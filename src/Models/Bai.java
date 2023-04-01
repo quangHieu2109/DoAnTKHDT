@@ -1,32 +1,24 @@
-package Models;
+package models;
 
-public class Bai {
-int diem;//điểm
-int chat;//chất
-int so;//số
-public Bai(int diem, int so, int chat) {
-	super();
-	this.diem = diem;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Bai extends JLabel{
+int so;
+int chat;
+ImageIcon imgMatSau;
+ImageIcon imgMatTruoc;
+public Bai(int so, int chat) {
 	this.chat = chat;
 	this.so = so;
-}
-public int getDiem() {
-	return diem;
-}
-public void setDiem(int diem) {
-	this.diem = diem;
-}
-public int getChat() {
-	return chat;
-}
-public void setChat(int chat) {
-	this.chat = chat;
+	this.imgMatSau = new ImageIcon("./img/bobai/matsau.png");
+	this.imgMatTruoc = new ImageIcon("./img/bobai/" + so + "" + chat + ".png");
 }
 public int getSo() {
 	return so;
 }
-public void setSo(int so) {
-	this.so = so;
+public int getChat() {
+	return chat;
+}
 }
 
-}
