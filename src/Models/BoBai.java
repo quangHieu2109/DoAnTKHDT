@@ -1,26 +1,22 @@
-package Models;
+package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class BoBai {
-ArrayList<Bai> boBai = new ArrayList<>();
-public BoBai() {
-	taoBoBai();
-}
-public ArrayList<Bai> getBoBai() {
-	return boBai;
-}
-public void taoBoBai() {//tạo bộ bài
-	for (int i = 1; i < 14; i++) {
-		for (int j = 0; j < 4; j++) {
-			if(i>10) {
-				boBai.add(new Bai(10, i, j));
+	private ArrayList<Bai> boBai;
+	public BoBai() {
+		boBai = new ArrayList<>();
+		for(int i =0; i < 4;i++) {
+			for(int j =1;j<14;j++) {
+				boBai.add(new Bai(j, i));
 			}
-			else {
-				boBai.add(new Bai(i, i, j));
-			}
-			
 		}
 	}
-}
+	public void xaoBai() {
+		Collections.shuffle(boBai);
+	}
+	public Bai rutBaiTrenCung() {
+		return boBai.remove(0);
+	}
 }
