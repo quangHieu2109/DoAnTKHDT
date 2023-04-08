@@ -14,11 +14,11 @@ public class Player {
 		baiTrenTay = new ArrayList<>();
 	}
 
-	public void themBai(Bai bai) {
+	public void themBai(Bai bai) {//thêm bài vào tay
 		baiTrenTay.add(bai);
 	}
 
-	public int getDiemBaiTrenTay() {
+	public int getDiemBaiTrenTay() {//tính điểm bài trên tay người chơi
 		int value = 0;
 		for (Bai bai : baiTrenTay) {
 			if (bai.getSo() > 10) {
@@ -43,4 +43,3 @@ public class Player {
 		return money;
 	}
 }
-

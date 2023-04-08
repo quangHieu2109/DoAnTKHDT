@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class BoBai {
 	private ArrayList<Bai> boBai;
@@ -13,10 +14,19 @@ public class BoBai {
 			}
 		}
 	}
-	public void xaoBai() {
+	public void xaoBai() {//xào bài
 		Collections.shuffle(boBai);
 	}
-	public Bai rutBaiTrenCung() {
+	public Bai rutBaiTrenCung() {//rút bài
 		return boBai.remove(0);
+	}
+	public List<Bai> getLstBoBai(){
+		return boBai;
+	}
+	public static void main(String[] args) {
+		BoBai b = new BoBai();
+		b.xaoBai();
+		System.out.println(b.rutBaiTrenCung());
+		System.out.println(b.rutBaiTrenCung());
 	}
 }

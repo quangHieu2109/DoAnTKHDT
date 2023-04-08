@@ -14,11 +14,26 @@ public Bai(int so, int chat) {
 	this.imgMatSau = new ImageIcon("./img/bobai/matsau.png");
 	this.imgMatTruoc = new ImageIcon("./img/bobai/" + so + "" + chat + ".png");
 }
+
 public int getSo() {
 	return so;
 }
+
 public int getChat() {
 	return chat;
 }
+
+public ImageIcon getImgMatSau() {
+	return imgMatSau;
 }
 
+public ImageIcon getImgMatTruoc() {
+	return imgMatTruoc;
+}
+
+@Override
+public String toString() {
+	return "Bai [so=" + so + ", chat=" + chat + "]";
+}
+
+}
