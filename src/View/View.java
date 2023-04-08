@@ -6,20 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import controller.Controller;
 import models.Models;
 
 public class View extends JFrame{
-	Models models;
 	final int CHIEURONGFRAME = 800;// chiều rộng game
 	final int CHIEUCAOFRAME = 600;// chiều cao game
 	APanel firstPanel;
 	TreeMap<String, APanel> lstPanel = new TreeMap<>();
-public View(Models models) {
+public View() {
+	
+			
 	this.setSize(CHIEURONGFRAME, CHIEUCAOFRAME);
 	this.setLocationRelativeTo(null);
 	this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 	this.setVisible(true);
-	this.models = models;
 	this.init();
 }
 public void setFirstPanel(APanel panel) {
@@ -61,7 +62,5 @@ public void addPanel(String key,APanel o) {
 public void removePanel(String namePanel) {
 	lstPanel.remove(namePanel);
 }
-public Models getModels() {
-	return models;
-}
+
 }

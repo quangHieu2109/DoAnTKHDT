@@ -2,15 +2,18 @@ package view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controller.ControllerDangNhap;
 
-public class GDDangNhap extends APanel{
+public class GDDangNhap extends APanel {
+	ControllerDangNhap ctrDangNhap;
 	public GDDangNhap(View view) {
 		super(view);
 	}
@@ -75,16 +78,52 @@ public class GDDangNhap extends APanel{
 
 	@Override
 	public void addAction() {//thêm các sụ kiện cho panel này
-		controller = new ControllerDangNhap(models,this);
+		ctrDangNhap = new ControllerDangNhap(this);
 		Component[] comps =  this.getComponents();
 		for(Component comp : comps) {
 			if(comp instanceof JButton) {
 				JButton btn = (JButton) comp;
-				btn.addActionListener(controller);
+				btn.addActionListener(this);
 			}
 		}
 	}
 
-	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand()==btnDangNhap.getActionCommand()) {
+			clickBtnDangNhap();
+		}
+		if(e.getActionCommand()==btnDangKy.getActionCommand()) {
+			clickBtnDangky();
+		}
+		
+	}
 
+	public void clickBtnDangNhap() {
+		
+		if (ctrDangNhap.checkTaiKhoan(txtUsername.getText(), txtPass.getText())){
+             if(view.hasPanel("SanhGame")) {//nếu đã có panel sảnh game thì xóa đi
+            	 view.removePanel("SanhGame");
+             }
+             view.addPanel("SanhGame", PanelFactory.createPanel("SanhGame", view));//thêm panel vào ds các panel
+             view.setContentPane(view.getPanel("SanhGame"));//set panel vào view
+             view.setVisible(true);
+             
+             ctrDangNhap.setPlayer();
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Bạn đã nhập sai tài khoản hoặc mật khẩu!");
+		}
+	}
+
+	public void clickBtnDangky() {
+		if(!view.hasPanel("DangKy")) {
+			view.addPanel("DangKy",  PanelFactory.createPanel("DangKy", this.getView()));
+			
+		}
+		view.setContentPane(view.getPanel("DangKy"));
+		view.setVisible(true);
+		
+
+	}
 }

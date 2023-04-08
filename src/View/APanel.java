@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
@@ -10,9 +11,8 @@ import javax.swing.JPanel;
 import controller.Controller;
 import models.Models;
 
-public abstract class APanel extends JPanel {
-	Models models;
-	Controller controller;
+public abstract class APanel extends JPanel implements ActionListener{
+	
 	View view;
 	final int SPACE = 15;
 	final int BTN_SIZE_WIDTH = 100;
@@ -30,7 +30,7 @@ public abstract class APanel extends JPanel {
 	public APanel(View view) {
 		CHIEURONGFRAME = view.getWidth();
 		CHIEUCAOFRAME = view.getHeight();
-		models= view.getModels();
+		
 		this.view=view;
 		this.init();
 		this.addAction();
@@ -55,7 +55,8 @@ public abstract class APanel extends JPanel {
 		this.add(btnOut);
 	}
 	
-
+@Override
+public abstract void actionPerformed(ActionEvent e);
 	public abstract void addAction();
 public View getView() {
 	return view;

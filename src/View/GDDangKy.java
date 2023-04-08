@@ -1,14 +1,18 @@
 package view;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controller.ControllerDangKy;
+import models.TaiKhoan;
 
 public class GDDangKy extends APanel{
+	ControllerDangKy ctrDangKy;
 	JButton btnDangKy;
 	
 	JLabel lbUserName;
@@ -66,17 +70,42 @@ public class GDDangKy extends APanel{
 	}
 	@Override
 	public void addAction() {
-		controller = new ControllerDangKy(models,this);
+		ctrDangKy = new ControllerDangKy(this);
 		Component[] comps =  this.getComponents();
 		for(Component comp : comps) {
 			if(comp instanceof JButton) {
 				JButton btn = (JButton) comp;
-				btn.addActionListener(controller);
+				btn.addActionListener(this);
 			}
 		}
 		
 	}
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand()==btnOut.getActionCommand()) {
+			clickBtnOut();
+		}
+		if(e.getActionCommand()==btnDangKy.getActionCommand()) {
+			clickBtnDangKy();
+		}
+		
+	}
+	public void clickBtnDangKy() {
+		if(this.getTxtUsername().getText().isEmpty()||this.getTxtPass().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
+		}
+		else if(ctrDangKy.checkTaiKhoan(txtUsername.getText(), txtPass.getText())) {//check xem tk đã tồn tại hay chưa
+			JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu đã tồn tại");
+		}
+		else {
+			ctrDangKy.themTkVaoDs(txtUsername.getText(), txtPass.getText());//thêm tk khoản vào ds
+			JOptionPane.showMessageDialog(this, "Bạn đã đăng ký thành công");
+		}
+	}
+	public void clickBtnOut() {
+		view.setContentPane(view.getPanel("DangNhap"));
+		view.setVisible(true);
+	}
 	
 
 }

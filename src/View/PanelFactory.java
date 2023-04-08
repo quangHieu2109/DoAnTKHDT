@@ -16,6 +16,9 @@ public static APanel createPanel(String type,View view) {
 		panel = new GDSanhGame(view);
 		break;
 	}
+	case "XiDach": {
+		panel =  new GDGameXiDach(view);
+	}
 	
 	}
 	return panel;
