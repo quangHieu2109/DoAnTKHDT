@@ -14,6 +14,12 @@ public class BoBai {
 			}
 		}
 	}
+	public Bai getBaiTai(int i) {
+		return boBai.get(i);
+	}
+	public int getSize() {
+		return boBai.size();
+	}
 	public void xaoBai() {//xào bài
 		Collections.shuffle(boBai);
 	}

@@ -50,6 +50,7 @@ public List<Player> getLstBot(){
 public BoBai getBoBai() {
 	return boBai;
 }
+
 public TaiKhoan getTaiKhoan() {
 	return taiKhoan;
 }

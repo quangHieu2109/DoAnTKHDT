@@ -13,8 +13,17 @@ public Bai(int so, int chat) {
 	this.so = so;
 	this.imgMatSau = new ImageIcon("./img/bobai/matsau.png");
 	this.imgMatTruoc = new ImageIcon("./img/bobai/" + so + "" + chat + ".png");
+	setHinhLaBai(imgMatSau);
 }
-
+public int getWidthImg() {
+	return imgMatTruoc.getIconWidth();
+}
+public int getHeightImg() {
+	return imgMatTruoc.getIconHeight();
+}
+public void setHinhLaBai(ImageIcon img) {
+	this.setIcon(img);
+}
 public int getSo() {
 	return so;
 }
