@@ -18,7 +18,7 @@ public  class Controller implements ActionListener{
 	APanel panel;
 	Timer timer;
 public Controller() {
-	
+	timer = new Timer(100, this);
 
 }
 public BoBai getBoBai() {
