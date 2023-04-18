@@ -90,11 +90,21 @@ public class GDBoxPlayer extends JPanel {
 		this.boundBai = boundBai;
 	}
 
-	public void themBaiVaoTay(Bai bai) {
-		player.themBai(bai);
-		bai.setHinhLaBai(bai.getImgMatTruoc());
-		boundBai.add(bai);
+	public void themBaiVaoTay(Bai bai, int type) {
+
+			boundBai.add(bai);
+			switch (type) {
+			case 0: {
+				
+				bai.setHinhLaBai(bai.getImgMatTruoc());
+				break;
+			}
+			}
+			this.repaint();
+		
+		
 	}
+	
 
 	public void roatePanel(int angle) {
 		if (angle == 270 || angle == 90) {
@@ -109,9 +119,8 @@ public class GDBoxPlayer extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-
 		if (angle == 270) {
 			g2.rotate(Math.toRadians(angle), height / 2, height / 2);
 		}
@@ -121,8 +130,7 @@ public class GDBoxPlayer extends JPanel {
 		if (angle == 180) {
 			g2.rotate(Math.toRadians(angle), width / 2, height / 2);
 		}
-
-		super.paintComponent(g);
+		
 
 	}
 

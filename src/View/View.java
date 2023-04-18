@@ -21,6 +21,7 @@ public View() {
 	this.setLocationRelativeTo(null);
 	this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 	this.setVisible(true);
+	
 	this.init();
 }
 public void setFirstPanel(APanel panel) {

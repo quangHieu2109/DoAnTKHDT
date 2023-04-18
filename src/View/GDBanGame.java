@@ -12,24 +12,24 @@ import controller.ControllerBanGame;
 import models.BoBai;
 
 public class GDBanGame extends APanel {
-	static int soNguoiChoi;
+	static int soNguoiChoi;//so người đấu với bạn
 	ControllerBanGame ctrBanGame;
 	List<GDBoxPlayer> lstBoxPlayer;// dách sách panel hiển thị đại diện người chơi
-	BoBai boBai;
+	
 
 	public GDBanGame(View view) {
 		super(view);
-		boBai = new BoBai();
 	}
 
 	@Override
 	public void init() {
 		super.init();
-		ctrBanGame = new ControllerBanGame();
+		ctrBanGame = new ControllerBanGame(this);
 		lstBoxPlayer = new ArrayList<>();
 		lstBoxPlayer.add(new GDBoxPlayer(ctrBanGame.getPlayer()));
 		themPVaoBox();
 		setBoxPVaoBanGame();
+		ctrBanGame.themBaiVaoGame();		
 
 	}
 
@@ -40,14 +40,14 @@ public class GDBanGame extends APanel {
 	}
 
 	public void setBoxPVaoBanGame() {// set các vị trí cho mỗi người chơi
-		switch (soNguoiChoi) {
-		case 1: {
+		switch (soNguoiChoi) {//set vị trí cho bot
+		case 1: {//set vị trí cho bot 1
 			lstBoxPlayer.get(1).roatePanel(180);
 			lstBoxPlayer.get(1).setBounds(CHIEURONGFRAME / 2 - lstBoxPlayer.get(1).width / 2, 0,
 					lstBoxPlayer.get(1).width, lstBoxPlayer.get(1).height);
 			break;
 		}
-		case 2: {
+		case 2: {//set vị trí cho bot 1,2
 			lstBoxPlayer.get(1).roatePanel(90);
 			lstBoxPlayer.get(2).roatePanel(270);
 
@@ -60,7 +60,7 @@ public class GDBanGame extends APanel {
 
 			break;
 		}
-		case 3: {
+		case 3: {//set vị trí cho bot 1,2,3
 			lstBoxPlayer.get(1).roatePanel(90);
 			lstBoxPlayer.get(2).roatePanel(270);
 			lstBoxPlayer.get(3).roatePanel(180);
@@ -80,19 +80,24 @@ public class GDBanGame extends APanel {
 		for (int i = 0; i < lstBoxPlayer.size(); i++) {
 			this.add(lstBoxPlayer.get(i));
 		}
+		//set Vị trí cho người chơi
 		lstBoxPlayer.get(0).setBounds(CHIEURONGFRAME / 2 - lstBoxPlayer.get(0).width / 2,
 				CHIEUCAOFRAME - lstBoxPlayer.get(0).height - 2 * SPACE, lstBoxPlayer.get(0).width,
 				lstBoxPlayer.get(0).height);
 		this.add(lstBoxPlayer.get(0));
 	}
 
-	public static void setSoNguoiChoi(int num) {
+	public List<GDBoxPlayer> getLstBoxPlayer() {
+		return lstBoxPlayer;
+	}
+
+	public static void setSoNguoiChoi(int num) {//set số người chơi đáu với bạn
 		soNguoiChoi = num;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -102,10 +107,4 @@ public class GDBanGame extends APanel {
 
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		g.drawImage(new ImageIcon("./img/bobai/matsau.png").getImage(), CHIEURONGFRAME / 2 - 45 / 2,
-				CHIEUCAOFRAME / 2 - 67 / 2, this);
-	}
 }

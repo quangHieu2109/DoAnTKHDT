@@ -11,8 +11,9 @@ public class GDGameXiDach extends GDBanGame {
 	ControllerXiDach ctrXiDach;
 	JButton btnRutBai;
 	JButton btnGapBai;
-	int soBaiDuocChia = 2;
-	int luotPlayer = 0;
+	final int soBaiDuocChia = 2;
+	int luotPlayer = 0;//lượt player=0
+	int process = 0;//biến hỗ trợ cho độ trễ animation
 
 	public GDGameXiDach(View view) {
 		super(view);
@@ -26,22 +27,49 @@ public class GDGameXiDach extends GDBanGame {
 		btnRutBai = new JButton("Rút bài");
 		btnRutBai.setActionCommand("RutBai");
 		btnRutBai.setBounds(CHIEURONGFRAME / 2 + SPACE * 3, CHIEUCAOFRAME / 2 - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH,
-				BTN_SIZE_HEIGHT);
+				BTN_SIZE_HEIGHT);//thiết lập cho nút rút bài
+		btnGapBai = new JButton("Gập bài");
+		btnGapBai.setActionCommand("GapBai");
+		btnGapBai.setBounds(CHIEURONGFRAME / 2 - SPACE * 3 - BTN_SIZE_WIDTH, CHIEUCAOFRAME / 2 - BTN_SIZE_HEIGHT,
+				BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT);//thiết lập nút gập bài
 
+		this.add(btnGapBai);
 		this.add(btnRutBai);
-		
+
 	}
 
-	public void start() {
-		boBai.xaoBai();
-		for (GDBoxPlayer gdBoxPlayer : lstBoxPlayer) {
-			gdBoxPlayer.themBaiVaoTay(boBai.rutBaiTrenCung());
-			gdBoxPlayer.themBaiVaoTay(boBai.rutBaiTrenCung());
+	public void start() {// phương thức bắt đầu ván game
+		ctrXiDach.xaoBai();// xào bài
+		for (GDBoxPlayer gdBoxPlayer : lstBoxPlayer) {// chia cho mỗi người chơi 2 lá bài
+
+			ctrXiDach.rutBai(gdBoxPlayer);
+			process++;
 		}
+		for (GDBoxPlayer gdBoxPlayer : lstBoxPlayer) {// chia cho mỗi người chơi 2 lá bài
+			
+			ctrXiDach.rutBai(gdBoxPlayer);
+			process++;
+		}
+		process = 0;
+	}
+
+	
+
+	public int getProcess() {//lấy tiến trình hàng đợi rút bài
+		return process;
+	}
+
+	public void clickBtnGapBai() {
+		for (int i = 1; i < lstBoxPlayer.size(); i++) {
+			ctrXiDach.botPlay(lstBoxPlayer.get(i));
+			lstBoxPlayer.get(i).repaint();
+		}
+		
+
 	}
 
 	public void clickBtnRutBai() {
-		lstBoxPlayer.get(luotPlayer).themBaiVaoTay(boBai.rutBaiTrenCung());
+		ctrXiDach.rutBai(lstBoxPlayer.get(luotPlayer));
 	}
 
 	@Override
@@ -49,7 +77,9 @@ public class GDGameXiDach extends GDBanGame {
 		if (e.getActionCommand() == btnRutBai.getActionCommand()) {
 			clickBtnRutBai();
 		}
-
+		if (e.getActionCommand() == btnGapBai.getActionCommand()) {
+			clickBtnGapBai();
+		}
 		view.setVisible(true);
 	}
 
