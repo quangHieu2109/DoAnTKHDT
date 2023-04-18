@@ -15,9 +15,11 @@ import view.APanel;
 
 public  class Controller implements ActionListener{
 	static Models models;
+	Animation animation;
 	APanel panel;
 	Timer timer;
 public Controller() {
+	
 	timer = new Timer(100, this);
 
 }
