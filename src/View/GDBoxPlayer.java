@@ -1,20 +1,13 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
+
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.geom.AffineTransform;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicPanelUI;
 
 import models.Bai;
 import models.Player;
@@ -92,19 +85,17 @@ public class GDBoxPlayer extends JPanel {
 
 	public void themBaiVaoTay(Bai bai, int type) {
 
-			boundBai.add(bai);
-			switch (type) {
-			case 0: {
-				
-				bai.setHinhLaBai(bai.getImgMatTruoc());
-				break;
-			}
-			}
-			this.repaint();
-		
-		
+		boundBai.add(bai);
+		switch (type) {
+		case 0: {
+
+			bai.setHinhLaBai(bai.getImgMatTruoc());
+			break;
+		}
+		}
+		this.repaint();
+
 	}
-	
 
 	public void roatePanel(int angle) {
 		if (angle == 270 || angle == 90) {
@@ -130,7 +121,6 @@ public class GDBoxPlayer extends JPanel {
 		if (angle == 180) {
 			g2.rotate(Math.toRadians(angle), width / 2, height / 2);
 		}
-		
 
 	}
 

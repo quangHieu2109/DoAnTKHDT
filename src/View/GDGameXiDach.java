@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 
@@ -64,9 +66,21 @@ public class GDGameXiDach extends GDBanGame {
 			ctrXiDach.botPlay(lstBoxPlayer.get(i));
 			lstBoxPlayer.get(i).repaint();
 		}
+		Timer timer = new Timer();
+		System.out.println(process);
+		TimerTask task = new TimerTask() {
+			
+			@Override
+			public void run() {
+				ctrXiDach.hienThiAllBai(lstBoxPlayer);
+				
+			}
+		};
+		System.out.println(process);
+		timer.schedule(task, process*500+1000);
 		
-
 	}
+
 
 	public void clickBtnRutBai() {
 		ctrXiDach.rutBai(lstBoxPlayer.get(luotPlayer));
@@ -82,7 +96,9 @@ public class GDGameXiDach extends GDBanGame {
 		}
 		view.setVisible(true);
 	}
-
+public void incrementProcess() {
+	process+=1;
+}
 	@Override
 	public void addAction() {
 		ctrXiDach = new ControllerXiDach(this);

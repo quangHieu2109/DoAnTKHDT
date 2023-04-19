@@ -94,6 +94,9 @@ public class GDBanGame extends APanel {
 	public static void setSoNguoiChoi(int num) {//set số người chơi đáu với bạn
 		soNguoiChoi = num;
 	}
+	public int getSoNguoiChoi(){
+		return soNguoiChoi;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
