@@ -29,7 +29,7 @@ public class GDBanGame extends APanel {
 		lstBoxPlayer.add(new GDBoxPlayer(ctrBanGame.getPlayer()));
 		themPVaoBox();
 		setBoxPVaoBanGame();
-		ctrBanGame.themBaiVaoGame();		
+		
 
 	}
 
