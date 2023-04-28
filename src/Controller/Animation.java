@@ -1,5 +1,7 @@
 package controller;
 
+
+
 import java.awt.Component;
 
 import java.awt.event.ActionEvent;
@@ -44,7 +46,7 @@ public class Animation extends Observable implements ActionListener {
 	public Animation(GDBoxPlayer player) {
 		this.gd = player;
 		obsevers = new ArrayList<>();
-		timer = new Timer(20, this);
+		timer = new Timer(15, this);
 		stateAnimation = false;
 	}
 

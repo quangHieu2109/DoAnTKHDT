@@ -24,4 +24,11 @@ public class TaiKhoan {
     public int getMoney() {
     	return money;
     }
+
+	@Override
+	public String toString() {
+		return "TaiKhoan [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", money=" + money + ", player="
+				+ player + "]";
+	}
+    
 }

@@ -14,6 +14,7 @@ public class BoBai {
 			}
 		}
 	}
+	
 	public Bai getBaiTai(int i) {
 		return boBai.get(i);
 	}
@@ -26,6 +27,7 @@ public class BoBai {
 	public Bai rutBaiTrenCung() {//rút bài
 		return boBai.remove(0);
 	}
+	
 	public List<Bai> getLstBoBai(){
 		return boBai;
 	}

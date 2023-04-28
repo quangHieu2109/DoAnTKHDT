@@ -8,11 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import controller.Controller;
 import controller.ControllerDangKy;
 import models.TaiKhoan;
 
 public class GDDangKy extends APanel{
-	ControllerDangKy ctrDangKy;
+	Controller ctrDangKy;
 	JButton btnDangKy;
 	
 	JLabel lbUserName;

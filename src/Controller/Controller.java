@@ -13,8 +13,8 @@ import models.Player;
 import models.TaiKhoan;
 import view.APanel;
 
-public  class Controller implements ActionListener{
-	static Models models;
+public abstract class Controller implements ActionListener{
+	protected static Models models;
 	Animation animation;
 	APanel panel;
 	Timer timer;
@@ -35,9 +35,9 @@ public Player getPlayer() {
 public boolean checkTaiKhoan(String userName,String pass) {
 	return models.checkTaiKhoan(userName, pass);
 }
-public void themTkVaoDs(String userName,String pass) {
-	models.getDsTK().add(new TaiKhoan(userName, pass));
-}
+public abstract void themTkVaoDs(String userName,String pass);
+
+
 
 public static void setModels(Models other) {
 	models = other;

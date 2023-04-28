@@ -17,5 +17,10 @@ View view;
 		this.panel=(GDSanhGame) panel;
 		this.view=panel.getView();
 	}
+	@Override
+	public void themTkVaoDs(String userName, String pass) {
+		// K lam gi
+		
+	}
 }
 

@@ -14,7 +14,7 @@ public class ControllerBanGame extends Controller {
 
 	public ControllerBanGame(GDBanGame panel) {
 		this.panel = panel;
-		
+
 	}
 
 	public Player getBot(int index) {
@@ -24,10 +24,17 @@ public class ControllerBanGame extends Controller {
 	public void themBaiVaoGame() {
 		for (int i = 0; i < 52; i++) {
 
-			models.getBoBai().getBaiTai(i).setBounds(panel.CHIEURONGFRAME / 2 - 45 / 2,
-					panel.CHIEUCAOFRAME / 2 - 67 / 2, models.getBoBai().getBaiTai(i).getWidthImg(),
-					models.getBoBai().getBaiTai(i).getHeightImg());
+			models.getBoBai().getBaiTai(i).setBounds(
+					panel.CHIEURONGFRAME / 2 - models.getBoBai().getBaiTai(i).getWidthImg() / 2,
+					panel.CHIEUCAOFRAME / 2 - models.getBoBai().getBaiTai(i).getHeightImg() / 2,
+					models.getBoBai().getBaiTai(i).getWidthImg(), models.getBoBai().getBaiTai(i).getHeightImg());
 			panel.add(models.getBoBai().getBaiTai(i));
 		}
+	}
+
+	@Override
+	public void themTkVaoDs(String userName, String pass) {
+		// K lam gi
+		
 	}
 }

@@ -23,4 +23,10 @@ public class ControllerDangNhap extends Controller {
 
 	}
 
+	@Override
+	public void themTkVaoDs(String userName, String pass) {
+		// K lam gi
+		
+	}
+
 }

@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+	int id;
 	String name;
 	int money;
 	List<Bai> baiTrenTay;
 
-	public Player(String name, int money) {
+	public Player(String name, int money,int id) {
 		this.name = name;
 		this.money = money;
+		this.id=id;
 		baiTrenTay = new ArrayList<>();
 	}
-
+public int getId() {
+	return id;
+}
 	public void themBai(Bai bai) {//thêm bài vào tay
+		
 		baiTrenTay.add(bai);
 	}
 

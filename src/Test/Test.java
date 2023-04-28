@@ -1,12 +1,16 @@
-package Test;
+package test;
 
-import Models.Models;
-import View.View;
+import controller.Controller;
+import controller.ControllerDangNhap;
+import models.Models;
+import view.View;
+
 
 public class Test {
 public static void main(String[] args) {
 	Models models = new Models();
-	View view = new View(models);
+	View view = new View();
+	
 	
 }
 }
