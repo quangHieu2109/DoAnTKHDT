@@ -21,7 +21,7 @@ public class GDGameXiDach extends GDBanGame {
 	final int soBaiDuocChia = 2;
 	int luotPlayer = 0;// lượt player=0
 	int process = 0;// biến hỗ trợ cho độ trễ animation
-
+	boolean rutBai = true;
 	public GDGameXiDach(View view) {
 		super(view);
 		datCuoc();
@@ -32,6 +32,7 @@ public class GDGameXiDach extends GDBanGame {
 		super.init();
 		lbDatCuoc = new JLabel("Nhập số tiền cược: ");
 		txtTienCuoc = new JTextField(8);
+		txtTienCuoc.setText(20000+"");
 		lbDatCuoc.setBounds(CHIEURONGFRAME / 2 - LABEL_SIZE_WIDTH, CHIEUCAOFRAME / 2 - LABEL_SIZE_HEIGHT,
 				LABEL_SIZE_WIDTH, LABEL_SIZE_HEIGHT);
 		txtTienCuoc.setBounds(CHIEURONGFRAME / 2 + SPACE, CHIEUCAOFRAME / 2 - TXT_SIZE_HEIGHT, TXT_SIZE_WIDTH,
@@ -90,6 +91,7 @@ public class GDGameXiDach extends GDBanGame {
 	}
 
 	public void clickBtnGapBai() {
+		rutBai = false;
 		for (int i = 1; i < lstBoxPlayer.size(); i++) {
 			ctrXiDach.botPlay(lstBoxPlayer.get(i));
 			lstBoxPlayer.get(i).repaint();
@@ -106,11 +108,13 @@ public class GDGameXiDach extends GDBanGame {
 		};
 		System.out.println(process);
 		timer.schedule(task, process * 500 + 1000);
-
+		repaint();
 	}
 
 	public void clickBtnRutBai() {
+		if(rutBai) {
 		ctrXiDach.rutBai(lstBoxPlayer.get(luotPlayer));
+		}
 	}
 
 	@Override
@@ -142,6 +146,9 @@ public class GDGameXiDach extends GDBanGame {
 			}
 		}
 
+	}
+	public double tienCuoc() {
+		return Double.valueOf(txtTienCuoc.getText());
 	}
 
 }

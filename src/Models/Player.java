@@ -34,7 +34,25 @@ public int getId() {
 		}
 		return value;
 	}
-
+	public boolean xiDach() { //kiem tra xem co phai xi dach khong
+		boolean result = false;
+		if(baiTrenTay.size() ==2) {
+			if((baiTrenTay.get(0).getSo() ==10 && baiTrenTay.get(1).getSo() >=10) ||
+			   (baiTrenTay.get(1).getSo() ==10 && baiTrenTay.get(0).getSo() >=10)	) {
+				result = true;
+			}
+		}
+		return result;
+		
+	}
+	public boolean quat() { //so diem > 21
+		boolean result = true;
+		if(getDiemBaiTrenTay()>21) {
+			result = false;
+		}
+		return result;
+		
+	}
 	public List<Bai> getBaiTrenTay() {
 		return baiTrenTay;
 
@@ -47,4 +65,8 @@ public int getId() {
 	public int getMoney() {
 		return money;
 	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	
 }

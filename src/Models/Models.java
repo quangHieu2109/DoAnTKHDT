@@ -17,6 +17,7 @@ BoBai boBai;
 TaiKhoan taiKhoan;
 List<TaiKhoan> dsTaiKhoan;
 Player player;
+Player chuSong;
 List<Player> lstBot;
 
 public Models() {
@@ -25,7 +26,9 @@ public Models() {
 	dsTaiKhoan= new ArrayList<>();
 	dsTaiKhoan.add(new TaiKhoan("root", "root"));
 	lstBot = new ArrayList<>();
+
 	createBots();
+	chuSong = lstBot.get(0);
 	dangKyTaiKhoan();
 }
 public List<TaiKhoan> getDsTK(){
@@ -34,8 +37,9 @@ public List<TaiKhoan> getDsTK(){
 
 public void createBots() {
 	lstBot.removeAll(lstBot);
-	for(int i = 1; i <= 4;i++) {
-		lstBot.add(new Player("bot "+i, 9000000,i));
+	lstBot.add(new Player("Chu song", 999999, 1));
+	for(int i = 2; i <= 4;i++) {
+		lstBot.add(new Player("bot ", 900000,i));
 	}
 }
 public void setPlayer() {
@@ -106,6 +110,13 @@ public TaiKhoan getTaiKhoan() {
 }
 public Player getPlayer() {
 	return player;
+}
+
+public Player getChuSong() {
+	return chuSong;
+}
+public void setChuSong(Player chuSong) {
+	this.chuSong = chuSong;
 }
 public void tk() {
 	for(TaiKhoan t : dsTaiKhoan) {

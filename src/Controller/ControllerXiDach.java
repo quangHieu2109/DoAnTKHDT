@@ -24,15 +24,55 @@ public class ControllerXiDach extends Controller implements Observer {
 		this.view = panel.getView();
 
 	}
-	public boolean checkWinFirstGame() {//kiểm tra các trường hợp win đầu game
-		boolean res= false;
-		return res;
-	}
-	public void checkWin() {//kiểm tra trường hợp win cuối game
+	public int checkWinFirstGame() {//kiểm tra các trường hợp win đầu game
+		int result =0;
+		boolean pl = models.getPlayer().xiDach(); //nguoi choi co duoc xi dach hay khong
+		boolean cs = models.getChuSong().xiDach();//chu song co duoc xi dach hay khong
+		if(pl != true && cs == true) {
+			result =-1; // tru tien nguoi choi
+		}else if(pl == true && cs != true) {
+			result = 1; // cong tien nguoi choi
+		}else if(pl == true && cs == true) {
+			result = 9; // hoa
+		}
 		
+		return result;
+	}
+	public int checkWin() {//kiểm tra trường hợp win cuối game
+		int result =0;
+		int pl = models.getPlayer().getDiemBaiTrenTay();
+		int cs = models.getChuSong().getDiemBaiTrenTay();
+		boolean plQuat = models.getPlayer().quat();
+		boolean csQuat = models.getChuSong().quat();
+		if(checkWinFirstGame() !=0) {
+			result = checkWinFirstGame();
+		}else {
+			if(plQuat ==true && csQuat != true) {
+				result =-1;
+			}else if(plQuat != true && csQuat ==true){
+				result = 1;
+				
+			}else if(plQuat ==true && csQuat ==true) {
+				result =9;
+			}else if(plQuat !=true && csQuat !=true){
+				if(pl <cs) {
+					result =-1;
+				}else if(pl > cs) {
+					result =1;
+				}
+				
+			}
+		}
+		
+		return result;
 	}
 	public void endGame() {// tổng kết ván game
-		
+		int tienCuoc = (int) panel.tienCuoc();
+		if(checkWin()<0) {
+			models.getPlayer().setMoney(models.getPlayer().getMoney() -tienCuoc);
+		}else if(checkWin()>0) {
+			models.getPlayer().setMoney(models.getPlayer().getMoney() +tienCuoc);
+		}
 		
 	}
 
