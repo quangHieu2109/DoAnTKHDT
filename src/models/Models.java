@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/Models/Models.java
 package models;
 
 import java.io.BufferedReader;
@@ -27,140 +26,8 @@ public Models() {
 	dsTaiKhoan= new ArrayList<>();
 	dsTaiKhoan.add(new TaiKhoan("root", "root"));
 	lstBot = new ArrayList<>();
-
 	createBots();
-	chuSong = lstBot.get(0);
-	dangKyTaiKhoan();
-}
-public List<TaiKhoan> getDsTK(){
-	return dsTaiKhoan;
-}
-
-public void createBots() {
-	lstBot.removeAll(lstBot);
-	lstBot.add(new Player("Chu song", 999999, 1));
-	for(int i = 2; i <= 4;i++) {
-		lstBot.add(new Player("bot ", 900000,i));
-	}
-}
-public void setPlayer() {
-        player = new Player(taiKhoan.getName(), taiKhoan.getMoney(),0);
-}
-public boolean checkTaiKhoan(String name,String mk) {
-	boolean res=false;
-	for (TaiKhoan taiKhoan : dsTaiKhoan) {
-		if(taiKhoan.dangNhap(name, mk)) {
-			res=true;
-			this.taiKhoan = taiKhoan;
-			break;
-		}
-	}
-	return res;
-}
-public boolean ktTaiKhoan(String tk) {
-	boolean result = true;
-	List<String> listTK = new ArrayList<>();
-	for(TaiKhoan t :dsTaiKhoan) {
-		listTK.add(t.getName());
-	}
-	if(listTK.contains(tk)) {
-		result = false;
-	}
-	return result;
-}
-public void themTaiKhoan(String tk, String mk) {
-	try {
-		PrintWriter pw = new PrintWriter(new FileOutputStream("TaiKhoan.txt", true));
-		pw.println(tk +" "+mk);
-//		pw.flush();
-		pw.close();
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-}
-public void dangKyTaiKhoan() {
-	File file = new File("TaiKhoan.txt");
-	try {
-		FileReader fr = new FileReader(file);
-		BufferedReader br = new BufferedReader(fr);
-		String tk="";
-		String mk="";
-		String line ="";
-		while((line = br.readLine())!= null) {
-			String[] s = line.split(" ");
-			tk=s[0];
-			mk=s[1];
-			if(ktTaiKhoan(tk)) {
-				dsTaiKhoan.add(new TaiKhoan(tk, mk));
-			}
-		}
-		
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-}
-public List<Player> getLstBot(){
-	return lstBot;
-}
-public BoBai getBoBai() {
-	return boBai;
-}
-
-public TaiKhoan getTaiKhoan() {
-	return taiKhoan;
-}
-public Player getPlayer() {
-	return player;
-}
-
-public Player getChuSong() {
-	return chuSong;
-}
-public void setChuSong(Player chuSong) {
-	this.chuSong = chuSong;
-}
-public void tk() {
-	for(TaiKhoan t : dsTaiKhoan) {
-		System.out.println(t);
-	}
-}
-public static void main(String[] args) {
-	Models m = new Models();
-//	m.themTaiKhoan("tk"	,"mk");
-//	m.themTaiKhoan("tk2", "mk2");
-//	m.dangKyTaiKhoan();
-	m.tk();
-}
-}
-=======
-package models;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import controller.Controller;
-
-public class Models {
-Controller controller;
-BoBai boBai;
-TaiKhoan taiKhoan;
-List<TaiKhoan> dsTaiKhoan;
-Player player;
-List<Player> lstBot;
-
-public Models() {
-	boBai = new BoBai();
-	Controller.setModels(this);
-	dsTaiKhoan= new ArrayList<>();
-	dsTaiKhoan.add(new TaiKhoan("root", "root"));
-	lstBot = new ArrayList<>();
-	createBots();
+	chuSong=lstBot.get(0);
 	dangKyTaiKhoan();
 }
 public List<TaiKhoan> getDsTK(){
@@ -247,6 +114,13 @@ public void tk() {
 		System.out.println(t);
 	}
 }
+
+public Player getChuSong() {
+	return chuSong;
+}
+public void setChuSong(Player chuSong) {
+	this.chuSong = chuSong;
+}
 public static void main(String[] args) {
 	Models m = new Models();
 //	m.themTaiKhoan("tk"	,"mk");
@@ -255,4 +129,3 @@ public static void main(String[] args) {
 	m.tk();
 }
 }
->>>>>>> 413cb5a94022f62fb4d9a5ace5e7fc501c8aac8c:src/models/Models.java
