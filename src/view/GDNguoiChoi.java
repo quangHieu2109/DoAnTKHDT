@@ -23,8 +23,8 @@ import models.ObseverMoney;
 public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, ObseverDiem, Observer {
 	private NguoiChoi nguoiChoi;
 	private int diem;
-	private int width = 250;
-	private int height = 130;
+	int width = 250;
+	int height = 130;
 	private int SPACE = 5;
 	private int angle = 0;
 	private int widthBoundIn4 = 100;

@@ -16,22 +16,22 @@ import view.GDNguoiChoi;
 
 public class Animation extends Observable implements ActionListener {
 
-	private Component obj;
-	private Timer timer;
-	private boolean stateAnimation;
-	private List<Observer> obsevers;
-	private int setOffTime = 0;
-	private GDNguoiChoi gd;
+	Component obj;
+	Timer timer;
+	boolean stateAnimation;
+	List<Observer> obsevers;
+	int setOffTime = 0;
+	GDNguoiChoi gd;
 
 	private final int MOVE_TO_Y = 1;
 	private final int MOVE_TO_X = 2;
 	private final int MOVE_TO_X_Y = 3;
-	private int dichX;
-	private int dichY;
-	private int viTrix;
-	private int viTriy;
-	private int selection;
-	private int speed = 7;
+	int dichX;
+	int dichY;
+	int viTrix;
+	int viTriy;
+	int selection;
+	int speed = 7;
 
 	public void removeObs(Observer o) {
 		obsevers.remove(o);

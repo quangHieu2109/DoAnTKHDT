@@ -56,5 +56,5 @@ public class Game {
 	public TypeGame getKieuGame() {
 		return kieuGame;
 	}
-	
+
 }

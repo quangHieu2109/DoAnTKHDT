@@ -10,9 +10,9 @@ import controller.ControllerDangNhap;
 
 public class View extends JFrame {
 	private static final View instance = new View();
-	 final int CHIEURONGFRAME = 800;// chiều rộng game
-	 final int CHIEUCAOFRAME = 600;// chiều cao game
-	private TreeMap<String, APanel> lstPanel = new TreeMap<>();
+	final int CHIEURONGFRAME = 800;// chiều rộng game
+	final int CHIEUCAOFRAME = 600;// chiều cao game
+	TreeMap<String, APanel> lstPanel = new TreeMap<>();
 
 	private View() {
 		this.setSize(CHIEURONGFRAME, CHIEUCAOFRAME);

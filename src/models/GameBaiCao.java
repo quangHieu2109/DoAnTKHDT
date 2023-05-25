@@ -6,7 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameBaiCao implements TypeGame {
-	private List<ObseverGame> obsGame;
+	List<ObseverGame> obsGame;
 	private Game game;
 
 	public GameBaiCao() {

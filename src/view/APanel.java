@@ -8,24 +8,25 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public abstract class APanel extends JPanel implements ActionListener {
+public abstract class APanel extends JPanel implements ActionListener{
+	
+	View view;
+	final int SPACE = 15;
+	final int BTN_SIZE_WIDTH = 100;
+	final int BTN_SIZE_HEIGHT = 30;
+	final int LABEL_SIZE_WIDTH = 90;
+	final int LABEL_SIZE_HEIGHT = 25;
+	final int TXT_SIZE_WIDTH = 90;
+	final int TXT_SIZE_HEIGHT = 25;
+	final ImageIcon imgBtnOut = new ImageIcon("./img/main/out.png");
+    final int CHIEURONGFRAME = View.getInstance().CHIEURONGFRAME;
+    final int CHIEUCAOFRAME = View.getInstance().CHIEUCAOFRAME;
+    JButton btnOut;
+    public APanel() {
+    	view= View.getInstance();
+    }
+	
 
-	protected View view;
-	protected final int SPACE = 15;
-	protected final int BTN_SIZE_WIDTH = 100;
-	protected final int BTN_SIZE_HEIGHT = 30;
-	protected final int LABEL_SIZE_WIDTH = 90;
-	protected final int LABEL_SIZE_HEIGHT = 25;
-	protected final int TXT_SIZE_WIDTH = 90;
-	protected final int TXT_SIZE_HEIGHT = 25;
-	protected final ImageIcon imgBtnOut = new ImageIcon("./img/main/out.png");
-	protected final int CHIEURONGFRAME = View.getInstance().CHIEURONGFRAME;
-	protected final int CHIEUCAOFRAME = View.getInstance().CHIEUCAOFRAME;
-	protected JButton btnOut;
-
-	public APanel() {
-		view = View.getInstance();
-	}
 
 	public void init() {
 		this.setBackground(new Color(91, 189, 43));
@@ -34,23 +35,21 @@ public abstract class APanel extends JPanel implements ActionListener {
 
 		btnOut = new JButton(imgBtnOut);
 		btnOut.setActionCommand("Out");
-
+		
 		btnOut.setBounds(0, 0, imgBtnOut.getIconWidth(), imgBtnOut.getIconWidth());
-
+		
 		btnOut.setOpaque(false);
 		btnOut.setBorderPainted(false);
-
+		
 		btnOut.setVisible(true);
 		this.add(btnOut);
 	}
-
-	@Override
-	public abstract void actionPerformed(ActionEvent e);
-
+	
+@Override
+public abstract void actionPerformed(ActionEvent e);
 	public abstract void addAction();
-
-	public View getView() {
-		return view;
-	}
-
+public View getView() {
+	return view;
+}
+	
 }

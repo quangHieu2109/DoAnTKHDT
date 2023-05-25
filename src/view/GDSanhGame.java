@@ -15,14 +15,14 @@ import models.GameBaiCao;
 import models.GameXiDach;
 
 public class GDSanhGame extends APanel {
-	private ControllerSanhGame ctrSanhGame;
-	private int chonSoNguoiChoi;
-	private ImageIcon imgXiDach;
-	private ImageIcon imgBaiCao;
-	private JButton btnModeXiDach;
-	private JButton btnModeBaiCao;
-	private JComboBox<Integer> cbNumOPlayer;
-	private JLabel lbChonSoNguoiChoi;
+	ControllerSanhGame ctrSanhGame;
+	int chonSoNguoiChoi;
+	ImageIcon imgXiDach;
+	ImageIcon imgBaiCao;
+	JButton btnModeXiDach;
+	JButton btnModeBaiCao;
+	JComboBox<Integer> cbNumOPlayer;
+	JLabel lbChonSoNguoiChoi;
 
 	public GDSanhGame(ControllerSanhGame ctrSanhGame) {
 		this.ctrSanhGame = ctrSanhGame;

@@ -33,7 +33,7 @@ public class GDGame extends APanel implements ObseverGame {
 	private JButton btnRutBai;
 	private JButton btnDan;
 	private boolean rutBai = true;
-	private int soNguoiChoi;
+	int soNguoiChoi;
 
 	public GDGame(ControllerGame ctrGame, Game game) {
 		this.game = game;
@@ -170,20 +170,20 @@ public class GDGame extends APanel implements ObseverGame {
 		switch (soNguoiChoi) {// set vị trí cho bot
 		case 2: {// set vị trí cho bot 1
 			dsGDNguoiChoi.get(1).roatePanel(180);
-			dsGDNguoiChoi.get(1).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(1).getWidth() / 2, 0,
-					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
+			dsGDNguoiChoi.get(1).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(1).width / 2, 0,
+					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
 			break;
 		}
 		case 3: {// set vị trí cho bot 1,2
 			dsGDNguoiChoi.get(1).roatePanel(90);
 			dsGDNguoiChoi.get(2).roatePanel(270);
 
-			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).getHeight() / 2,
-					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
+			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).height / 2,
+					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
 
-			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).getWidth(),
-					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).getHeight() / 2, dsGDNguoiChoi.get(2).getWidth(),
-					dsGDNguoiChoi.get(2).getHeight());
+			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).width,
+					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).height / 2, dsGDNguoiChoi.get(2).width,
+					dsGDNguoiChoi.get(2).height);
 
 			break;
 		}
@@ -192,15 +192,15 @@ public class GDGame extends APanel implements ObseverGame {
 			dsGDNguoiChoi.get(2).roatePanel(270);
 			dsGDNguoiChoi.get(3).roatePanel(180);
 
-			dsGDNguoiChoi.get(3).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(3).getWidth() / 2, 0,
-					dsGDNguoiChoi.get(3).getWidth(), dsGDNguoiChoi.get(3).getHeight());
-			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).getHeight() / 2,
-					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
+			dsGDNguoiChoi.get(3).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(3).width / 2, 0,
+					dsGDNguoiChoi.get(3).width, dsGDNguoiChoi.get(3).height);
+			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).height / 2,
+					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
 
-			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).getWidth(),
+			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).width,
 
-					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).getHeight() / 2, dsGDNguoiChoi.get(2).getWidth(),
-					dsGDNguoiChoi.get(2).getHeight());
+					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).height / 2, dsGDNguoiChoi.get(2).width,
+					dsGDNguoiChoi.get(2).height);
 			break;
 		}
 		}
@@ -208,9 +208,9 @@ public class GDGame extends APanel implements ObseverGame {
 			this.add(dsGDNguoiChoi.get(i));
 		}
 		// set Vị trí cho người chơi
-		dsGDNguoiChoi.get(0).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(0).getWidth() / 2,
-				CHIEUCAOFRAME - dsGDNguoiChoi.get(0).getHeight() - 2 * SPACE, dsGDNguoiChoi.get(0).getWidth(),
-				dsGDNguoiChoi.get(0).getHeight());
+		dsGDNguoiChoi.get(0).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(0).width / 2,
+				CHIEUCAOFRAME - dsGDNguoiChoi.get(0).height - 2 * SPACE, dsGDNguoiChoi.get(0).width,
+				dsGDNguoiChoi.get(0).height);
 	}
 
 	@Override
