@@ -8,7 +8,7 @@ import view.GDSanhGame;
 import view.View;
 
 public class ControllerSanhGame {
-	Game game;
+	private Game game;
 
 	public ControllerSanhGame() {
 		game = new Game();

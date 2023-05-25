@@ -17,6 +17,7 @@ public class DSTaiKhoan {
 		taoTaiKhoan();
 		return instance;
 	}
+
 	public static DSTaiKhoan getInstance() {
 		return instance;
 	}
@@ -37,6 +38,7 @@ public class DSTaiKhoan {
 			// TODO: handle exception
 		}
 	}
+
 	public static void taoTaiKhoan() {
 		dsTaiKhoan.removeAll(dsTaiKhoan);
 		File file = new File("TaiKhoan.txt");
@@ -52,7 +54,7 @@ public class DSTaiKhoan {
 				tk = s[0];
 				mk = s[1];
 				money = Integer.valueOf(s[2]);
-			
+
 				dsTaiKhoan.add(TaiKhoan.createTaiKhoan(tk, mk, money));
 			}
 
@@ -60,6 +62,7 @@ public class DSTaiKhoan {
 			// TODO: handle exception
 		}
 	}
+
 	public static void themTaiKhoan(String tk, String mk) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileOutputStream("TaiKhoan.txt", true));
@@ -70,8 +73,6 @@ public class DSTaiKhoan {
 			// TODO: handle exception
 		}
 	}
-
-	
 
 	public static void xoaFile() {
 		try {
@@ -113,7 +114,7 @@ public class DSTaiKhoan {
 	public TaiKhoan getTaiKhoan(int index) {
 		return dsTaiKhoan.get(index);
 	}
-	
+
 	public static void setDsTaiKhoan(List<TaiKhoan> dsTaiKhoan) {
 		DSTaiKhoan.dsTaiKhoan = dsTaiKhoan;
 	}
@@ -136,8 +137,9 @@ public class DSTaiKhoan {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public void remove() {
 		dsTaiKhoan.removeAll(dsTaiKhoan);
 	}
-	
+
 }

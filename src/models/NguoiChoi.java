@@ -7,13 +7,13 @@ import java.util.TimerTask;
 import javax.swing.Timer;
 
 public class NguoiChoi {
-	String ten;
-	int tien;
-	int type=1;
-	List<Bai> dsBaiTrenTay;
-	List<ObseverMoney> dsObsMoney;
-	List<ObseverHand> dsObsHand;
-	List<ObseverDiem> dsObsDiem;
+	private String ten;
+	private int tien;
+	private int type = 1;
+	private List<Bai> dsBaiTrenTay;
+	private List<ObseverMoney> dsObsMoney;
+	private List<ObseverHand> dsObsHand;
+	private List<ObseverDiem> dsObsDiem;
 
 	public NguoiChoi(String ten, int tien) {
 		dsBaiTrenTay = new ArrayList<>();
@@ -23,6 +23,7 @@ public class NguoiChoi {
 		this.ten = ten;
 		this.tien = tien;
 	}
+
 	public int getType() {
 		return type;
 	}
@@ -52,11 +53,11 @@ public class NguoiChoi {
 		for (ObseverHand o : dsObsHand)
 			o.updateHand(bai, delay);
 	}
+
 	public void notifyObsHand() {
 		for (ObseverHand o : dsObsHand)
 			o.updateHand();
 	}
-
 
 	public void registerObsDiem(ObseverDiem o) {
 		dsObsDiem.add(o);
@@ -70,19 +71,19 @@ public class NguoiChoi {
 
 	public int getDiemTrenTay() {
 		int res = 0;
-		boolean at =false;
+		boolean at = false;
 		for (int i = 0; i < dsBaiTrenTay.size(); i++) {
 			res += dsBaiTrenTay.get(i).getDiem();
 		}
-		for(Bai b:dsBaiTrenTay) {
-			if(b.at()) {
+		for (Bai b : dsBaiTrenTay) {
+			if (b.at()) {
 				at = true;
 			}
 		}
-		if(at && (res+10)<=21) {
-			res = res+10;
-		}else if(at && (res+9)<=21) {
-			res = res+9;
+		if (at && (res + 10) <= 21) {
+			res = res + 10;
+		} else if (at && (res + 9) <= 21) {
+			res = res + 9;
 		}
 		return res;
 	}
@@ -119,15 +120,17 @@ public class NguoiChoi {
 		return result;
 
 	}
+
 	public boolean nguLinh() {
 		boolean result = false;
-		if(dsBaiTrenTay.size() ==5 && getDiemTrenTay() <=21) {
+		if (dsBaiTrenTay.size() == 5 && getDiemTrenTay() <= 21) {
 			result = true;
 		}
 		return result;
 	}
+
 	public void setType(int type) {
-		this.type=type;
+		this.type = type;
 	}
 
 	public boolean quat() { // so diem > 21
@@ -138,14 +141,15 @@ public class NguoiChoi {
 		return result;
 
 	}
-	
+
 	@Override
 	public String toString() {
 		return "NguoiChoi [ten=" + ten + ", tien=" + tien + "]";
 	}
+
 	public void refresh() {
 		dsBaiTrenTay.removeAll(dsBaiTrenTay);
-		
+
 	}
 
 }

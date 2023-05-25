@@ -33,7 +33,7 @@ public class GDGame extends APanel implements ObseverGame {
 	private JButton btnRutBai;
 	private JButton btnDan;
 	private boolean rutBai = true;
-	int soNguoiChoi;
+	private int soNguoiChoi;
 
 	public GDGame(ControllerGame ctrGame, Game game) {
 		this.game = game;
@@ -42,18 +42,19 @@ public class GDGame extends APanel implements ObseverGame {
 		init();
 		addAction();
 		stateCuoc();
-		
+
 	}
 
 	@Override
 	public void init() {
 		super.init();
-		
+
 		soNguoiChoi = game.getSoNguoiChoi();
 		dsGDNguoiChoi = new ArrayList<>();
-		
+
 		gdKetQua = new GDKetQua();
-		gdKetQua.setBounds(CHIEURONGFRAME/2-gdKetQua.getWidth()/2, CHIEUCAOFRAME/2-gdKetQua.getHeight()/2, gdKetQua.getWidth(), gdKetQua.getHeight());
+		gdKetQua.setBounds(CHIEURONGFRAME / 2 - gdKetQua.getWidth() / 2, CHIEUCAOFRAME / 2 - gdKetQua.getHeight() / 2,
+				gdKetQua.getWidth(), gdKetQua.getHeight());
 		gdKetQua.addAction(this);
 		this.add(gdKetQua);
 		themNguoiChoiVaoGame();
@@ -75,10 +76,10 @@ public class GDGame extends APanel implements ObseverGame {
 		btnDan.setBounds(CHIEURONGFRAME / 2 - SPACE * 3 - BTN_SIZE_WIDTH,
 				dsGDNguoiChoi.get(0).getY() - SPACE - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT);// thiết lập nút
 																										// gập bài
-		txtDatCuoc.setBounds(CHIEURONGFRAME / 2 + SPACE, CHIEUCAOFRAME / 2 - TXT_SIZE_HEIGHT , TXT_SIZE_WIDTH,
+		txtDatCuoc.setBounds(CHIEURONGFRAME / 2 + SPACE, CHIEUCAOFRAME / 2 - TXT_SIZE_HEIGHT, TXT_SIZE_WIDTH,
 				TXT_SIZE_HEIGHT);
-		txtDatCuoc.setText(20000+"");
-		lbDatCuoc.setBounds(CHIEURONGFRAME / 2 - SPACE - LABEL_SIZE_WIDTH, CHIEUCAOFRAME / 2 - LABEL_SIZE_HEIGHT ,
+		txtDatCuoc.setText(20000 + "");
+		lbDatCuoc.setBounds(CHIEURONGFRAME / 2 - SPACE - LABEL_SIZE_WIDTH, CHIEUCAOFRAME / 2 - LABEL_SIZE_HEIGHT,
 				LABEL_SIZE_WIDTH, LABEL_SIZE_HEIGHT);
 		// thêm bài vào game
 		for (int i = 0; i < game.getBoBai().getSize(); i++) {
@@ -104,7 +105,7 @@ public class GDGame extends APanel implements ObseverGame {
 		btnBatDau.setVisible(false);
 		txtDatCuoc.setVisible(false);
 		lbDatCuoc.setVisible(false);
-		if(game.getKieuGame() instanceof GameBaiCao) {
+		if (game.getKieuGame() instanceof GameBaiCao) {
 			btnDan.setVisible(false);
 			btnRutBai.setVisible(false);
 		}
@@ -120,7 +121,7 @@ public class GDGame extends APanel implements ObseverGame {
 		btnBatDau.setVisible(true);
 		txtDatCuoc.setVisible(true);
 		lbDatCuoc.setVisible(true);
-		if(game.getKieuGame() instanceof GameBaiCao) {
+		if (game.getKieuGame() instanceof GameBaiCao) {
 			btnDan.setVisible(false);
 			btnRutBai.setVisible(false);
 		}
@@ -147,6 +148,7 @@ public class GDGame extends APanel implements ObseverGame {
 			gd.updateHand();
 		}
 	}
+
 	public void stateKetQua() {
 		for (int i = 0; i < game.getBoBai().getSize(); i++) {
 			game.getBoBai().getBaiTai(i).setVisible(false);
@@ -158,7 +160,7 @@ public class GDGame extends APanel implements ObseverGame {
 		txtDatCuoc.setVisible(false);
 		lbDatCuoc.setVisible(false);
 		gdKetQua.setVisible(true);
-		if(game.getKieuGame() instanceof GameBaiCao) {
+		if (game.getKieuGame() instanceof GameBaiCao) {
 			btnDan.setVisible(false);
 			btnRutBai.setVisible(false);
 		}
@@ -168,20 +170,20 @@ public class GDGame extends APanel implements ObseverGame {
 		switch (soNguoiChoi) {// set vị trí cho bot
 		case 2: {// set vị trí cho bot 1
 			dsGDNguoiChoi.get(1).roatePanel(180);
-			dsGDNguoiChoi.get(1).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(1).width / 2, 0,
-					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
+			dsGDNguoiChoi.get(1).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(1).getWidth() / 2, 0,
+					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
 			break;
 		}
 		case 3: {// set vị trí cho bot 1,2
 			dsGDNguoiChoi.get(1).roatePanel(90);
 			dsGDNguoiChoi.get(2).roatePanel(270);
 
-			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).height / 2,
-					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
+			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).getHeight() / 2,
+					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
 
-			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).width,
-					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).height / 2, dsGDNguoiChoi.get(2).width,
-					dsGDNguoiChoi.get(2).height);
+			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).getWidth(),
+					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).getHeight() / 2, dsGDNguoiChoi.get(2).getWidth(),
+					dsGDNguoiChoi.get(2).getHeight());
 
 			break;
 		}
@@ -190,15 +192,15 @@ public class GDGame extends APanel implements ObseverGame {
 			dsGDNguoiChoi.get(2).roatePanel(270);
 			dsGDNguoiChoi.get(3).roatePanel(180);
 
-			dsGDNguoiChoi.get(3).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(3).width / 2, 0,
-					dsGDNguoiChoi.get(3).width, dsGDNguoiChoi.get(3).height);
-			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).height / 2,
-					dsGDNguoiChoi.get(1).width, dsGDNguoiChoi.get(1).height);
+			dsGDNguoiChoi.get(3).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(3).getWidth() / 2, 0,
+					dsGDNguoiChoi.get(3).getWidth(), dsGDNguoiChoi.get(3).getHeight());
+			dsGDNguoiChoi.get(1).setBounds(0, CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(1).getHeight() / 2,
+					dsGDNguoiChoi.get(1).getWidth(), dsGDNguoiChoi.get(1).getHeight());
 
-			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).width,
+			dsGDNguoiChoi.get(2).setBounds(CHIEURONGFRAME - dsGDNguoiChoi.get(2).getWidth(),
 
-					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).height / 2, dsGDNguoiChoi.get(2).width,
-					dsGDNguoiChoi.get(2).height);
+					CHIEUCAOFRAME / 2 - dsGDNguoiChoi.get(2).getHeight() / 2, dsGDNguoiChoi.get(2).getWidth(),
+					dsGDNguoiChoi.get(2).getHeight());
 			break;
 		}
 		}
@@ -206,9 +208,9 @@ public class GDGame extends APanel implements ObseverGame {
 			this.add(dsGDNguoiChoi.get(i));
 		}
 		// set Vị trí cho người chơi
-		dsGDNguoiChoi.get(0).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(0).width / 2,
-				CHIEUCAOFRAME - dsGDNguoiChoi.get(0).height - 2 * SPACE, dsGDNguoiChoi.get(0).width,
-				dsGDNguoiChoi.get(0).height);
+		dsGDNguoiChoi.get(0).setBounds(CHIEURONGFRAME / 2 - dsGDNguoiChoi.get(0).getWidth() / 2,
+				CHIEUCAOFRAME - dsGDNguoiChoi.get(0).getHeight() - 2 * SPACE, dsGDNguoiChoi.get(0).getWidth(),
+				dsGDNguoiChoi.get(0).getHeight());
 	}
 
 	@Override
@@ -218,25 +220,24 @@ public class GDGame extends APanel implements ObseverGame {
 			if (!txtDatCuoc.getText().isEmpty()) {
 				tienCuoc = Integer.parseInt(txtDatCuoc.getText());
 			}
-			if(tienCuoc>game.getDsNguoiChoi().getNguoiChoi(0).getTien()) {
+			if (tienCuoc > game.getDsNguoiChoi().getNguoiChoi(0).getTien()) {
 				JOptionPane.showMessageDialog(this, "Vui lòng nhập tiền cược không vượt quá số dư hiện có!");
-			}
-			else {
+			} else {
 				game.setTienCuoc(tienCuoc);
 				statePlayGame();
 				ctrGame.runGame();
 			}
-		
 
 		}
-		if(e.getActionCommand()==btnOut.getActionCommand()||e.getActionCommand()==gdKetQua.getBtnThoat().getActionCommand()) {
-			if(View.getInstance().hasPanel("SanhGame")) {
+		if (e.getActionCommand() == btnOut.getActionCommand()
+				|| e.getActionCommand() == gdKetQua.getBtnThoat().getActionCommand()) {
+			if (View.getInstance().hasPanel("SanhGame")) {
 				View.getInstance().removePanel("SanhGame");
 			}
 			new ControllerSanhGame();
 			View.getInstance().setVisible(true);
 		}
-		if(e.getActionCommand().equals(gdKetQua.getBtnChoiLai().getActionCommand())) {
+		if (e.getActionCommand().equals(gdKetQua.getBtnChoiLai().getActionCommand())) {
 			game.refresh();
 			refresh();
 			stateCuoc();
@@ -247,16 +248,18 @@ public class GDGame extends APanel implements ObseverGame {
 			rutBai = false;
 		}
 		if (e.getActionCommand() == btnRutBai.getActionCommand()) {
-			if(game.getKieuGame()instanceof GameXiDach) {
-			if(game.getDsNguoiChoi().getNguoiChoi(0).getDSBaiTrenTay().size()<5) {
-				if(rutBai) {
-					ctrGame.rutBai();
+			if (game.getKieuGame() instanceof GameXiDach) {
+				if (game.getDsNguoiChoi().getNguoiChoi(0).getDSBaiTrenTay().size() < 5) {
+					if (rutBai) {
+						ctrGame.rutBai();
+					}
+				}
+				if (game.getDsNguoiChoi().getNguoiChoi(0).getDSBaiTrenTay().size() == 5
+						|| game.getDsNguoiChoi().getNguoiChoi(0).getDiemTrenTay() > 21) {
+					btnRutBai.setVisible(false);
 				}
 			}
-			if(game.getDsNguoiChoi().getNguoiChoi(0).getDSBaiTrenTay().size()==5||game.getDsNguoiChoi().getNguoiChoi(0).getDiemTrenTay()>21) {
-				btnRutBai.setVisible(false);
-			}}
-			
+
 		}
 
 	}
@@ -273,17 +276,15 @@ public class GDGame extends APanel implements ObseverGame {
 
 	}
 
-
 	@Override
 	public void update(TypeGame game) {
 		gdKetQua.updateTitle(game.gameOver());
-		for(GDNguoiChoi gd: dsGDNguoiChoi) {
+		for (GDNguoiChoi gd : dsGDNguoiChoi) {
 			gd.showBai();
 		}
 		stateKetQua();
 		View.getInstance().setVisible(true);
-		
-		
+
 	}
 
 }

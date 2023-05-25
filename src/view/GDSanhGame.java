@@ -14,20 +14,22 @@ import controller.ControllerSanhGame;
 import models.GameBaiCao;
 import models.GameXiDach;
 
-public class GDSanhGame extends APanel{
-	ControllerSanhGame ctrSanhGame;
-	int chonSoNguoiChoi;
-	ImageIcon imgXiDach;
-	ImageIcon imgBaiCao;
-	JButton btnModeXiDach;
-	JButton btnModeBaiCao;
-	JComboBox<Integer> cbNumOPlayer;
-	JLabel lbChonSoNguoiChoi;
+public class GDSanhGame extends APanel {
+	private ControllerSanhGame ctrSanhGame;
+	private int chonSoNguoiChoi;
+	private ImageIcon imgXiDach;
+	private ImageIcon imgBaiCao;
+	private JButton btnModeXiDach;
+	private JButton btnModeBaiCao;
+	private JComboBox<Integer> cbNumOPlayer;
+	private JLabel lbChonSoNguoiChoi;
+
 	public GDSanhGame(ControllerSanhGame ctrSanhGame) {
-		this.ctrSanhGame=ctrSanhGame;
+		this.ctrSanhGame = ctrSanhGame;
 		this.init();
 		this.addAction();
 	}
+
 	@Override
 	public void init() {
 		super.init();
@@ -37,11 +39,11 @@ public class GDSanhGame extends APanel{
 		btnModeXiDach = new JButton(imgXiDach);
 		btnModeBaiCao = new JButton(imgBaiCao);
 		Font font = new Font("Arial", Font.PLAIN, 20);
-		
+
 		lbChonSoNguoiChoi = new JLabel();
 		lbChonSoNguoiChoi.setText("Chọn số người chơi");
 		lbChonSoNguoiChoi.setFont(font);
-		
+
 		btnModeBaiCao.setActionCommand("BaiCao");
 		btnModeXiDach.setActionCommand("XiDach");
 
@@ -55,8 +57,8 @@ public class GDSanhGame extends APanel{
 				imgBaiCao.getIconWidth(), imgBaiCao.getIconHeight());
 		cbNumOPlayer.setBounds(CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2, btnModeBaiCao.getY() - SPACE - BTN_SIZE_HEIGHT,
 				BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT);
-		lbChonSoNguoiChoi.setBounds((CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2)-45,
-				cbNumOPlayer.getY() - SPACE - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH+400, BTN_SIZE_HEIGHT);
+		lbChonSoNguoiChoi.setBounds((CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2) - 45,
+				cbNumOPlayer.getY() - SPACE - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH + 400, BTN_SIZE_HEIGHT);
 //		lbChonSoNguoiChoi.setb
 
 		btnModeXiDach.setOpaque(false);
@@ -69,6 +71,7 @@ public class GDSanhGame extends APanel{
 		this.add(lbChonSoNguoiChoi);
 		this.add(cbNumOPlayer);
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(btnOut.getActionCommand())) {
@@ -77,23 +80,23 @@ public class GDSanhGame extends APanel{
 		if (e.getActionCommand().equals(btnModeXiDach.getActionCommand())) {
 			btnClickGameXiDach();
 		}
-		if(e.getActionCommand().equals(btnModeBaiCao.getActionCommand())) {
+		if (e.getActionCommand().equals(btnModeBaiCao.getActionCommand())) {
 			btnClickGameBaiCao();
 		}
-		
+
 	}
+
 	private void btnClickGameBaiCao() {
-		ctrSanhGame.setSoNguoiChoi((int)cbNumOPlayer.getSelectedItem());
+		ctrSanhGame.setSoNguoiChoi((int) cbNumOPlayer.getSelectedItem());
 		ctrSanhGame.playGame(new GameBaiCao());
 	}
 
 	private void btnClickGameXiDach() {
-		ctrSanhGame.setSoNguoiChoi((int)cbNumOPlayer.getSelectedItem());
+		ctrSanhGame.setSoNguoiChoi((int) cbNumOPlayer.getSelectedItem());
 		ctrSanhGame.playGame(new GameXiDach());
-		
-		
-		
+
 	}
+
 	private void clickBtnOut() {
 		int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không", "Đăng Xuất",
 				JOptionPane.YES_NO_OPTION);
@@ -102,9 +105,9 @@ public class GDSanhGame extends APanel{
 			View.getInstance().removePanel("SanhGame");
 			View.getInstance().setVisible(true);
 		}
-		
-		
+
 	}
+
 	@Override
 	public void addAction() {
 		Component[] comps = this.getComponents();
@@ -114,7 +117,7 @@ public class GDSanhGame extends APanel{
 				btn.addActionListener(this);
 			}
 		}
-		
+
 	}
 
 }

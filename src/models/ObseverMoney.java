@@ -1,5 +1,5 @@
 package models;
 
 public interface ObseverMoney {
-void updateMoney(int money);
+	void updateMoney(int money);
 }

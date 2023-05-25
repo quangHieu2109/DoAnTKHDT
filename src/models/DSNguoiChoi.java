@@ -51,7 +51,7 @@ public class DSNguoiChoi {
 	public void updateDSNguoiChoi() {
 		xoaFile();
 		try {
-			
+
 			PrintWriter pw = new PrintWriter("NguoiChoi.txt");
 			String ten = "";
 			int money = 0;
@@ -59,7 +59,6 @@ public class DSNguoiChoi {
 				ten = dsNguoiChoi.get(i).getTen();
 				money = dsNguoiChoi.get(i).getTien();
 				pw.println(ten + " " + money);
-				
 
 			}
 			pw.close();
@@ -79,8 +78,6 @@ public class DSNguoiChoi {
 
 		return dsNguoiChoi.get(index);
 	}
-
-	
 
 	public List<NguoiChoi> getDsNguoiChoi() {
 		return dsNguoiChoi;

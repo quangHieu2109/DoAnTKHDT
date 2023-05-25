@@ -1,5 +1,5 @@
 package models;
 
 public interface ObseverDiem {
-void updateDiem(int diem);
+	void updateDiem(int diem);
 }

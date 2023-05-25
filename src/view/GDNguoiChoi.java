@@ -20,26 +20,25 @@ import models.ObseverDiem;
 import models.ObseverHand;
 import models.ObseverMoney;
 
-
-public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, ObseverDiem ,Observer{
-	NguoiChoi nguoiChoi;
-	int diem;
-	int width = 250;
-	int height = 130;
-	int SPACE = 5;
-	int angle = 0;
-	int widthBoundIn4 = 100;
-	int heightBoundIn4 = 50;
-	int widthBoundBai = width;
-	int heightBoundBai = 67;
-	JLabel lbName;
-	JLabel lbMoney;
-	JPanel boundBai;
-	JPanel boundIn4Player;
-	String name;
-	int money;
-	int x;
-	int y;
+public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, ObseverDiem, Observer {
+	private NguoiChoi nguoiChoi;
+	private int diem;
+	private int width = 250;
+	private int height = 130;
+	private int SPACE = 5;
+	private int angle = 0;
+	private int widthBoundIn4 = 100;
+	private int heightBoundIn4 = 50;
+	private int widthBoundBai = width;
+	private int heightBoundBai = 67;
+	private JLabel lbName;
+	private JLabel lbMoney;
+	private JPanel boundBai;
+	private JPanel boundIn4Player;
+	private String name;
+	private int money;
+	private int x;
+	private int y;
 
 	public GDNguoiChoi(NguoiChoi nguoiChoi) {
 		this.nguoiChoi = nguoiChoi;
@@ -81,8 +80,8 @@ public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, Ob
 	}
 
 	public void updateMoney(int money) {
-		lbMoney.setText(money+"");
-		
+		lbMoney.setText(money + "");
+
 		repaint();
 	}
 
@@ -107,12 +106,13 @@ public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, Ob
 		this.repaint();
 
 	}
+
 	public void showBai() {
 		Component[] comps = boundBai.getComponents();
-		for(Component comp : comps) {
-			if(comp instanceof Bai) {
-			    Bai bai = (Bai) comp;
-			    bai.setHinhLaBai(bai.getImgMatTruoc());
+		for (Component comp : comps) {
+			if (comp instanceof Bai) {
+				Bai bai = (Bai) comp;
+				bai.setHinhLaBai(bai.getImgMatTruoc());
 			}
 		}
 		repaint();
@@ -144,46 +144,43 @@ public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, Ob
 		if (angle == 180) {
 			g2.rotate(Math.toRadians(angle), width / 2, height / 2);
 		}
-	
-		
 
 	}
 
 	@Override
-	public void updateHand(Bai bai,int delay) {
+	public void updateHand(Bai bai, int delay) {
 		Animation animation = new Animation(this);
 		animation.registerObs(this);
-		animation.moveToX_Y(this.getX()+width/2, this.getY()+height/2, bai);
+		animation.moveToX_Y(this.getX() + width / 2, this.getY() + height / 2, bai);
 		animation.start(delay);
 	}
 
 	@Override
 	public void updateDiem(int diem) {
-		this.diem=diem;
+		this.diem = diem;
 		repaint();
-		
+
 	}
 
 	@Override
 	public void updateHand() {
 		boundBai.removeAll();
-		for(Bai bai : nguoiChoi.getDSBaiTrenTay()) {
+		for (Bai bai : nguoiChoi.getDSBaiTrenTay()) {
 			boundBai.add(bai);
 		}
 		repaint();
 		View.getInstance().setVisible(true);
-		
-		
+
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		Animation a = (Animation) o;
-		themBaiVaoTay((Bai)a.getObj(), nguoiChoi.getType());
-	
+		themBaiVaoTay((Bai) a.getObj(), nguoiChoi.getType());
+
 		repaint();
 		View.getInstance().setVisible(true);
-		
+
 	}
 
 }

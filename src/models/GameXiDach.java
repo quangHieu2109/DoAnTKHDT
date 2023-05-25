@@ -9,8 +9,8 @@ import java.util.TimerTask;
 import view.View;
 
 public class GameXiDach implements TypeGame {
-	List<ObseverGame> obsGame;
-	Game game;
+	private List<ObseverGame> obsGame;
+	private Game game;
 
 	public GameXiDach() {
 		obsGame = new ArrayList<>();
@@ -19,7 +19,7 @@ public class GameXiDach implements TypeGame {
 
 	public void run(Game game) {// chạy game trong này
 		this.game = game;
-		game.boBai.xaoBai();
+		game.getBoBai().xaoBai();
 		chiaBai();// chia bài
 
 		Timer timer = new Timer();
@@ -64,10 +64,10 @@ public class GameXiDach implements TypeGame {
 			@Override
 			public void run() {
 				boolean continute = false;
-				for (int i = 1; i < game.soNguoiChoi; i++) {
+				for (int i = 1; i < game.getSoNguoiChoi(); i++) {
 
-					if (game.dsNguoiChoi.getNguoiChoi(i).getDiemTrenTay() < 14) {
-						rutBai(game.dsNguoiChoi.getNguoiChoi(i), process * 400 + 200);
+					if (game.getDsNguoiChoi().getNguoiChoi(i).getDiemTrenTay() < 14) {
+						rutBai(game.getDsNguoiChoi().getNguoiChoi(i), process * 400 + 200);
 						continute = true;
 						process++;
 					}
@@ -103,35 +103,35 @@ public class GameXiDach implements TypeGame {
 	}
 
 	public void rutBai(NguoiChoi nguoiChoi, int delay) {
-		nguoiChoi.addBaiVaoTay(game.boBai.rutBaiTrenCung(), delay);
+		nguoiChoi.addBaiVaoTay(game.getBoBai().rutBaiTrenCung(), delay);
 	}
 
 	private void endGame2() {
 
 		List<Integer> res = checkWin();
 
-		NguoiChoi cs = game.dsNguoiChoi.getNguoiChoi(1);
+		NguoiChoi cs = game.getDsNguoiChoi().getNguoiChoi(1);
 		for (int i = 0; i < res.size(); i++) {
-			NguoiChoi pl = game.dsNguoiChoi.getNguoiChoi(i);
+			NguoiChoi pl = game.getDsNguoiChoi().getNguoiChoi(i);
 
 			pl.setTien(pl.getTien() + game.getTienCuoc() * res.get(i));
 		}
 		DSTaiKhoan.getInstance().getNguoiChoi().setMoney(game.getDsNguoiChoi().getNguoiChoi(0).getTien());
 		DSTaiKhoan.getInstance().updateDSTaiKhoan();
-		game.dsNguoiChoi.updateDSNguoiChoi();
+		game.getDsNguoiChoi().updateDSNguoiChoi();
 	}
 
 	private void endGame1() {
 		List<Integer> res = checkThangDauGame();
-		NguoiChoi cs = game.dsNguoiChoi.getNguoiChoi(1);
+		NguoiChoi cs = game.getDsNguoiChoi().getNguoiChoi(1);
 		for (int i = 0; i < res.size(); i++) {
-			NguoiChoi pl = game.dsNguoiChoi.getNguoiChoi(i);
+			NguoiChoi pl = game.getDsNguoiChoi().getNguoiChoi(i);
 			if (i != 1) {
 				pl.setTien(pl.getTien() + game.getTienCuoc() * res.get(i));
 			}
 		}
 		DSTaiKhoan.getInstance().getNguoiChoi().setMoney(game.getDsNguoiChoi().getNguoiChoi(0).getTien());
-		game.dsNguoiChoi.updateDSNguoiChoi();
+		game.getDsNguoiChoi().updateDSNguoiChoi();
 		DSTaiKhoan.getInstance().updateDSTaiKhoan();
 
 	}
@@ -172,9 +172,9 @@ public class GameXiDach implements TypeGame {
 	public void choiLai() {
 		game.getBoBai().refresh();
 		System.out.println(game.getBoBai().getSize());
-		for (int i = 0; i < game.soNguoiChoi; i++) {
-			game.getDsNguoiChoi().getNguoiChoi(i).dsBaiTrenTay
-					.removeAll(game.getDsNguoiChoi().getNguoiChoi(i).dsBaiTrenTay);
+		for (int i = 0; i < game.getSoNguoiChoi(); i++) {
+			game.getDsNguoiChoi().getNguoiChoi(i).getDSBaiTrenTay()
+					.removeAll(game.getDsNguoiChoi().getNguoiChoi(i).getDSBaiTrenTay());
 			game.getDsNguoiChoi().getNguoiChoi(i).notifyObsHand();
 		}
 
@@ -184,13 +184,13 @@ public class GameXiDach implements TypeGame {
 		List<Integer> res = new ArrayList<>();
 		int result = 0;
 
-		int cs = game.dsNguoiChoi.getNguoiChoi(1).getDiemTrenTay();
-		boolean csQuat = game.dsNguoiChoi.getNguoiChoi(1).quat();
-		boolean csNguLinh = game.dsNguoiChoi.getNguoiChoi(1).nguLinh();
+		int cs = game.getDsNguoiChoi().getNguoiChoi(1).getDiemTrenTay();
+		boolean csQuat = game.getDsNguoiChoi().getNguoiChoi(1).quat();
+		boolean csNguLinh = game.getDsNguoiChoi().getNguoiChoi(1).nguLinh();
 		for (int i = 0; i < game.getSoNguoiChoi(); i++) {
-			int pl = game.dsNguoiChoi.getNguoiChoi(i).getDiemTrenTay();
-			boolean plQuat = game.dsNguoiChoi.getNguoiChoi(i).quat();
-			boolean plNguLinh = game.dsNguoiChoi.getNguoiChoi(i).nguLinh();
+			int pl = game.getDsNguoiChoi().getNguoiChoi(i).getDiemTrenTay();
+			boolean plQuat = game.getDsNguoiChoi().getNguoiChoi(i).quat();
+			boolean plNguLinh = game.getDsNguoiChoi().getNguoiChoi(i).nguLinh();
 			if (checkThangDauGame().get(i) != 0) {
 				result = checkThangDauGame().get(i);
 			} else {
