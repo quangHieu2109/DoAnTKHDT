@@ -8,33 +8,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controller.Controller;
-import models.Models;
-
 public abstract class APanel extends JPanel implements ActionListener{
 	
 	View view;
 	final int SPACE = 15;
 	final int BTN_SIZE_WIDTH = 100;
 	final int BTN_SIZE_HEIGHT = 30;
-	final int LABEL_SIZE_WIDTH = 100;
+	final int LABEL_SIZE_WIDTH = 90;
 	final int LABEL_SIZE_HEIGHT = 25;
 	final int TXT_SIZE_WIDTH = 90;
 	final int TXT_SIZE_HEIGHT = 25;
 	final ImageIcon imgBtnOut = new ImageIcon("./img/main/out.png");
-    public final int CHIEUCAOFRAME;
-    public final int CHIEURONGFRAME;
-    
+    final int CHIEURONGFRAME = View.getInstance().CHIEURONGFRAME;
+    final int CHIEUCAOFRAME = View.getInstance().CHIEUCAOFRAME;
     JButton btnOut;
-    
-	public APanel(View view) {
-		CHIEURONGFRAME = view.getWidth();
-		CHIEUCAOFRAME = view.getHeight();
-		
-		this.view=view;
-		this.init();
-		this.addAction();
-	}
+    public APanel() {
+    	view= View.getInstance();
+    }
 	
 
 
@@ -42,7 +32,7 @@ public abstract class APanel extends JPanel implements ActionListener{
 		this.setBackground(new Color(91, 189, 43));
 		this.setVisible(true);
 		this.setLayout(null);
-		
+
 		btnOut = new JButton(imgBtnOut);
 		btnOut.setActionCommand("Out");
 		

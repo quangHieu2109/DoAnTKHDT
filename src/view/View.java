@@ -6,17 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import controller.Controller;
-import models.Models;
+import controller.ControllerDangNhap;
+
 
 public class View extends JFrame{
+	private static final View instance = new View();
 	final int CHIEURONGFRAME = 800;// chiều rộng game
 	final int CHIEUCAOFRAME = 600;// chiều cao game
-	APanel firstPanel;
 	TreeMap<String, APanel> lstPanel = new TreeMap<>();
-public View() {
-	
-			
+private View() {
 	this.setSize(CHIEURONGFRAME, CHIEUCAOFRAME);
 	this.setLocationRelativeTo(null);
 	this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
@@ -24,8 +22,14 @@ public View() {
 	
 	this.init();
 }
+public void run() {
+	ControllerDangNhap ctrDangNhap = new ControllerDangNhap();
+	
+}
+public static View getInstance() {
+	return instance;
+}
 public void setFirstPanel(APanel panel) {
-	firstPanel = panel;
 	this.init();
 }
 public void init() {
@@ -46,10 +50,7 @@ catch (InstantiationException e) {
 catch (IllegalAccessException e) {
    // handle exception
 }
-	firstPanel = PanelFactory.createPanel("DangNhap",this);
-	lstPanel.put("DangNhap", firstPanel);
-	this.setContentPane(firstPanel);
-	this.setVisible(true);
+	
 }
 public boolean hasPanel(String namePanel) {
 	return lstPanel.containsKey(namePanel);

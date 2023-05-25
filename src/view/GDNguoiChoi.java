@@ -1,19 +1,29 @@
 package view;
 
 import java.awt.Color;
-
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.Animation;
 import models.Bai;
-import models.Player;
+import models.NguoiChoi;
+import models.ObseverDiem;
+import models.ObseverHand;
+import models.ObseverMoney;
 
-public class GDBoxPlayer extends JPanel {
-	Player player;
+
+public class GDNguoiChoi extends JPanel implements ObseverMoney, ObseverHand, ObseverDiem ,Observer{
+	NguoiChoi nguoiChoi;
+	int diem;
 	int width = 250;
 	int height = 130;
 	int SPACE = 5;
@@ -31,10 +41,10 @@ public class GDBoxPlayer extends JPanel {
 	int x;
 	int y;
 
-	public GDBoxPlayer(Player player) {
-		this.player = player;
-		name = player.getName();
-		money = player.getMoney();
+	public GDNguoiChoi(NguoiChoi nguoiChoi) {
+		this.nguoiChoi = nguoiChoi;
+		name = nguoiChoi.getTen();
+		money = nguoiChoi.getTien();
 		lbName = new JLabel(name);
 		lbMoney = new JLabel(money + "");
 		x = width / 2;
@@ -66,12 +76,13 @@ public class GDBoxPlayer extends JPanel {
 
 	}
 
-	public Player getPlayer() {
-		return this.player;
+	public NguoiChoi getNguoiChoi() {
+		return this.nguoiChoi;
 	}
 
 	public void updateMoney(int money) {
-		this.money = money;
+		lbMoney.setText(money+"");
+		
 		repaint();
 	}
 
@@ -96,6 +107,17 @@ public class GDBoxPlayer extends JPanel {
 		this.repaint();
 
 	}
+	public void showBai() {
+		Component[] comps = boundBai.getComponents();
+		for(Component comp : comps) {
+			if(comp instanceof Bai) {
+			    Bai bai = (Bai) comp;
+			    bai.setHinhLaBai(bai.getImgMatTruoc());
+			}
+		}
+		repaint();
+		View.getInstance().setVisible(true);
+	}
 
 	public void roatePanel(int angle) {
 		if (angle == 270 || angle == 90) {
@@ -111,6 +133,7 @@ public class GDBoxPlayer extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		View.getInstance().setVisible(true);
 		Graphics2D g2 = (Graphics2D) g;
 		if (angle == 270) {
 			g2.rotate(Math.toRadians(angle), height / 2, height / 2);
@@ -121,7 +144,46 @@ public class GDBoxPlayer extends JPanel {
 		if (angle == 180) {
 			g2.rotate(Math.toRadians(angle), width / 2, height / 2);
 		}
+	
+		
 
+	}
+
+	@Override
+	public void updateHand(Bai bai,int delay) {
+		Animation animation = new Animation(this);
+		animation.registerObs(this);
+		animation.moveToX_Y(this.getX()+width/2, this.getY()+height/2, bai);
+		animation.start(delay);
+	}
+
+	@Override
+	public void updateDiem(int diem) {
+		this.diem=diem;
+		repaint();
+		
+	}
+
+	@Override
+	public void updateHand() {
+		boundBai.removeAll();
+		for(Bai bai : nguoiChoi.getDSBaiTrenTay()) {
+			boundBai.add(bai);
+		}
+		repaint();
+		View.getInstance().setVisible(true);
+		
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		Animation a = (Animation) o;
+		themBaiVaoTay((Bai)a.getObj(), nguoiChoi.getType());
+	
+		repaint();
+		View.getInstance().setVisible(true);
+		
 	}
 
 }

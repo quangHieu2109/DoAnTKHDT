@@ -1,34 +1,37 @@
 package models;
 
 public class TaiKhoan {
-    private String tenDangNhap;
-    private String matKhau;
-    int money;
-    Player player;
+public String userName;
+public String password;
+public int money;
+public TaiKhoan(String userName, String password, int money) {
+	this.userName=userName;
+	this.password=password;
+	this.money = money;
+}
+public static TaiKhoan createTaiKhoan(String userName, String pass, int money) {
+	TaiKhoan tk =  new TaiKhoan(userName, pass, money);
+//	tk.setMoney(50000);
+	return tk;
+}
+public boolean checkTaiKhoan(String name, String pass) {
+	return this.userName.equals(name)&&this.password.equals(pass);
+}
+public void setMoney(int money) {
+	this.money=money;
+}
+public String getUserName() {
+	return userName;
+}
+public String getPassword() {
+	return password;
+}
+public int getMoney() {
+	return money;
+}
+@Override
+public String toString() {
+	return "TaiKhoan [userName=" + userName + ", password=" + password + ", money=" + money + "]";
+}
 
-    public TaiKhoan(String tenDangNhap, String matKhau) {
-        this.tenDangNhap = tenDangNhap;
-        this.matKhau = matKhau;
-        this.money=50000;
-    }
-
-    public boolean dangNhap(String tenDangNhap, String matKhau) {
-        return this.tenDangNhap.equals(tenDangNhap) && this.matKhau.equals(matKhau);
-    }
-    public void setPlayer(Player player) {
-    	this.player=player;
-    }
-    public String getName() {
-    	return tenDangNhap;
-    }
-    public int getMoney() {
-    	return money;
-    }
-
-	@Override
-	public String toString() {
-		return "TaiKhoan [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", money=" + money + ", player="
-				+ player + "]";
-	}
-    
 }

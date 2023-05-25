@@ -15,6 +15,14 @@ public Bai(int so, int chat) {
 	this.imgMatTruoc = new ImageIcon("./img/bobai/" + so + "" + chat + ".png");
 	setHinhLaBai(imgMatSau);
 }
+public int getDiem() {
+	if(so>=10) {
+		return 10;
+	}
+	else {
+		return so;
+	}
+}
 public int getWidthImg() {
 	return imgMatTruoc.getIconWidth();
 }
@@ -39,7 +47,12 @@ public ImageIcon getImgMatSau() {
 public ImageIcon getImgMatTruoc() {
 	return imgMatTruoc;
 }
-
+public boolean at() {
+	if(so == 1) {
+		return true;
+	}
+	return false;
+}
 @Override
 public String toString() {
 	return "Bai [so=" + so + ", chat=" + chat + "]";

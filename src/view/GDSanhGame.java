@@ -1,21 +1,20 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import controller.Controller;
-import controller.ControllerDangNhap;
 import controller.ControllerSanhGame;
+import models.GameBaiCao;
+import models.GameXiDach;
 
-public class GDSanhGame extends APanel {
+public class GDSanhGame extends APanel{
 	ControllerSanhGame ctrSanhGame;
 	int chonSoNguoiChoi;
 	ImageIcon imgXiDach;
@@ -24,21 +23,27 @@ public class GDSanhGame extends APanel {
 	JButton btnModeBaiCao;
 	JComboBox<Integer> cbNumOPlayer;
 	JLabel lbChonSoNguoiChoi;
-
-	public GDSanhGame(View view) {
-		super(view);
-
+	public GDSanhGame(ControllerSanhGame ctrSanhGame) {
+		this.ctrSanhGame=ctrSanhGame;
+		this.init();
+		this.addAction();
 	}
-
 	@Override
 	public void init() {
 		super.init();
-		Integer[] soNguoiChoi = { 1, 2, 3 };
+		Integer[] soNguoiChoi = { 2, 3, 4 };
 		imgBaiCao = new ImageIcon("./img/main/baiCao.png");
 		imgXiDach = new ImageIcon("./img/main/xiDach.png");
 		btnModeXiDach = new JButton(imgXiDach);
 		btnModeBaiCao = new JButton(imgBaiCao);
-		lbChonSoNguoiChoi = new JLabel("Chọn số người chơi");
+		Font font = new Font("Arial", Font.PLAIN, 20);
+		
+		lbChonSoNguoiChoi = new JLabel();
+		lbChonSoNguoiChoi.setText("Chọn số người chơi");
+		lbChonSoNguoiChoi.setFont(font);
+		
+		btnModeBaiCao.setActionCommand("BaiCao");
+		btnModeXiDach.setActionCommand("XiDach");
 
 		cbNumOPlayer = new JComboBox<>(soNguoiChoi);
 		cbNumOPlayer.setActionCommand("selectNumberPlayer");
@@ -50,8 +55,9 @@ public class GDSanhGame extends APanel {
 				imgBaiCao.getIconWidth(), imgBaiCao.getIconHeight());
 		cbNumOPlayer.setBounds(CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2, btnModeBaiCao.getY() - SPACE - BTN_SIZE_HEIGHT,
 				BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT);
-		lbChonSoNguoiChoi.setBounds(CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2,
-				cbNumOPlayer.getY() - SPACE - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT);
+		lbChonSoNguoiChoi.setBounds((CHIEURONGFRAME / 2 - BTN_SIZE_WIDTH / 2)-45,
+				cbNumOPlayer.getY() - SPACE - BTN_SIZE_HEIGHT, BTN_SIZE_WIDTH+400, BTN_SIZE_HEIGHT);
+//		lbChonSoNguoiChoi.setb
 
 		btnModeXiDach.setOpaque(false);
 		btnModeBaiCao.setOpaque(false);
@@ -62,34 +68,7 @@ public class GDSanhGame extends APanel {
 		this.add(btnModeBaiCao);
 		this.add(lbChonSoNguoiChoi);
 		this.add(cbNumOPlayer);
-
 	}
-
-	public void clickBtnOut() {
-		int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không", "Đăng Xuất",
-				JOptionPane.YES_NO_OPTION);
-		if (result == JOptionPane.YES_OPTION) {// nếu đồng ý sẽ xóa panel sảnh game và set view thành panel đăng nhập
-			view.removePanel("SanhGame");
-			view.setContentPane(view.getPanel("DangNhap"));
-		}
-
-		view.setVisible(true);
-	}
-
-	public void chonSoNguoiChoi(Integer num) {
-		GDBanGame.setSoNguoiChoi(num);
-	}
-
-	public void btnClickGameXiDach() {
-		chonSoNguoiChoi((Integer)cbNumOPlayer.getSelectedItem());
-		if(view.hasPanel("XiDach")) {
-			view.removePanel("XiDach");
-		}
-		view.addPanel("XiDach", PanelFactory.createPanel("XiDach", view));
-		view.setContentPane(view.getPanel("XiDach"));
-		view.setVisible(true);
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(btnOut.getActionCommand())) {
@@ -98,12 +77,36 @@ public class GDSanhGame extends APanel {
 		if (e.getActionCommand().equals(btnModeXiDach.getActionCommand())) {
 			btnClickGameXiDach();
 		}
-
+		if(e.getActionCommand().equals(btnModeBaiCao.getActionCommand())) {
+			btnClickGameBaiCao();
+		}
+		
+	}
+	private void btnClickGameBaiCao() {
+		ctrSanhGame.setSoNguoiChoi((int)cbNumOPlayer.getSelectedItem());
+		ctrSanhGame.playGame(new GameBaiCao());
 	}
 
+	private void btnClickGameXiDach() {
+		ctrSanhGame.setSoNguoiChoi((int)cbNumOPlayer.getSelectedItem());
+		ctrSanhGame.playGame(new GameXiDach());
+		
+		
+		
+	}
+	private void clickBtnOut() {
+		int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không", "Đăng Xuất",
+				JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION) {// nếu đồng ý sẽ xóa panel sảnh game và set view thành panel đăng nhập
+			View.getInstance().setContentPane(View.getInstance().getPanel("DangNhap"));
+			View.getInstance().removePanel("SanhGame");
+			View.getInstance().setVisible(true);
+		}
+		
+		
+	}
 	@Override
 	public void addAction() {
-		ctrSanhGame = new ControllerSanhGame(this);
 		Component[] comps = this.getComponents();
 		for (Component comp : comps) {
 			if (comp instanceof JButton) {
@@ -111,6 +114,7 @@ public class GDSanhGame extends APanel {
 				btn.addActionListener(this);
 			}
 		}
-
+		
 	}
+
 }

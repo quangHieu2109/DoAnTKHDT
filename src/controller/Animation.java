@@ -1,7 +1,5 @@
 package controller;
 
-
-
 import java.awt.Component;
 
 import java.awt.event.ActionEvent;
@@ -14,7 +12,7 @@ import java.util.TimerTask;
 import java.util.logging.Handler;
 
 import javax.swing.Timer;
-import view.GDBoxPlayer;
+import view.GDNguoiChoi;
 
 public class Animation extends Observable implements ActionListener {
 
@@ -23,7 +21,7 @@ public class Animation extends Observable implements ActionListener {
 	boolean stateAnimation;
 	List<Observer> obsevers;
 	int setOffTime = 0;
-	GDBoxPlayer gd;
+	GDNguoiChoi gd;
 
 	private final int MOVE_TO_Y = 1;
 	private final int MOVE_TO_X = 2;
@@ -33,7 +31,7 @@ public class Animation extends Observable implements ActionListener {
 	int viTrix;
 	int viTriy;
 	int selection;
-	int speed = 5;
+	int speed = 7;
 
 	public void removeObs(Observer o) {
 		obsevers.remove(o);
@@ -43,10 +41,10 @@ public class Animation extends Observable implements ActionListener {
 		setOffTime = longTime;
 	}
 
-	public Animation(GDBoxPlayer player) {
+	public Animation(GDNguoiChoi player) {
 		this.gd = player;
 		obsevers = new ArrayList<>();
-		timer = new Timer(15, this);
+		timer = new Timer(5, this);
 		stateAnimation = false;
 	}
 
@@ -116,24 +114,24 @@ public class Animation extends Observable implements ActionListener {
 
 	private void moveTo_X_Y(int x, int y, Component obj) {
 		stateAnimation = true;
-
-		if (obj.getX() < x) {
+		if (obj.getX() < x-obj.getWidth()/2) {
 			obj.setBounds(obj.getX() + speed, obj.getY(), obj.getWidth(), obj.getHeight());
 		}
 		if (obj.getX() > x) {
 			obj.setBounds(obj.getX() - speed, obj.getY(), obj.getWidth(), obj.getHeight());
 		}
-		if (obj.getY() < y) {
-			obj.setBounds(obj.getX(), obj.getY() + speed, obj.getWidth(), obj.getHeight());
+		if (obj.getY() < y-obj.getHeight()) {
+				obj.setBounds(obj.getX(), obj.getY() + speed, obj.getWidth(), obj.getHeight());
+				
 		}
 		if (obj.getY() > y) {
 			obj.setBounds(obj.getX(), obj.getY() - speed, obj.getWidth(), obj.getHeight());
 		}
-		if (obj.getY() >= y - 4 && obj.getY() <= y + 4 && obj.getX() <= x + 4 && obj.getX() >= x - 4) {
+		if (obj.getY() >= y - obj.getHeight() && obj.getY() <= y + obj.getHeight() 
+		&& obj.getX() <= x + obj.getWidth()/2 && obj.getX() >= x - obj.getWidth()/2) {
 			timer.stop();
 			stateAnimation = false;
 		}
-
 	}
 
 	public boolean getStateAnimation() {

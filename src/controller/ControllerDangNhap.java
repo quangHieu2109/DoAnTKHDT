@@ -1,32 +1,36 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
-import models.Models;
-import view.APanel;
-import view.GDDangKy;
+import models.DSTaiKhoan;
 import view.GDDangNhap;
-import view.PanelFactory;
+import view.GDSanhGame;
 import view.View;
 
-public class ControllerDangNhap extends Controller {
-	GDDangNhap panel;
-	View view;
-
-	public ControllerDangNhap(APanel panel) {
-
-		this.panel = (GDDangNhap) panel;
-		this.view=panel.getView();
-
+public class ControllerDangNhap {
+public ControllerDangNhap() {
+	GDDangNhap gdDangNhap = new GDDangNhap(this);
+	if(View.getInstance().hasPanel("DangNhap")) {
+		View.getInstance().removePanel("DangNhap");
 	}
-
-	@Override
-	public void themTkVaoDs(String userName, String pass) {
-		// K lam gi
-		
+	View.getInstance().addPanel("DangNhap", gdDangNhap);
+	View.getInstance().setContentPane(View.getInstance().getPanel("DangNhap"));
+	View.getInstance().setVisible(true);
+}
+	public void dangNhap(String userName,String pass) {
+		if (DSTaiKhoan.getDSTaiKhoan().checkTaiKhoan(userName, pass)){
+            if(View.getInstance().hasPanel("SanhGame")) {//nếu đã có panel sảnh game thì xóa đi
+           	 View.getInstance().removePanel("SanhGame");
+            }
+            DSTaiKhoan.getDSTaiKhoan().setUsername(userName);
+            ControllerSanhGame ctrSanhGame = new ControllerSanhGame();
+           
+            View.getInstance().setVisible(true);
+            
+		}
+		else {
+			JOptionPane.showMessageDialog(View.getInstance(), "Bạn đã nhập sai tài khoản hoặc mật khẩu!");
+		}
 	}
 
 }

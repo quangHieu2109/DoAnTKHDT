@@ -1,29 +1,32 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.lang.ModuleLayer.Controller;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controller.Controller;
 import controller.ControllerDangKy;
-import models.TaiKhoan;
+
 
 public class GDDangKy extends APanel{
-	Controller ctrDangKy;
 	JButton btnDangKy;
 	
 	JLabel lbUserName;
 	JLabel lbPass;
-	
+	ControllerDangKy ctrDangKy;
 	JTextField txtUsername;
-	JTextField txtPass;
-	public GDDangKy(View view) {
-		super(view);
-	
+	JPasswordField txtPass;
+	public GDDangKy(ControllerDangKy ctrDangKy) {
+		this.init();
+		
+		this.addAction();
+		this.ctrDangKy=ctrDangKy;
 	}
 	public void init() {
 		super.init();
@@ -31,19 +34,22 @@ public class GDDangKy extends APanel{
 		btnDangKy = new JButton("Đăng ký");
 		lbUserName = new JLabel("Tên đăng nhập:");
 		lbPass = new JLabel("Mật khẩu:");
+		Font font = new Font("Arial", Font.BOLD, 15);
+		lbUserName.setFont(font);
+		lbPass.setFont(font);
 		txtUsername = new JTextField(8);
-		txtPass = new JTextField(8);
+		txtPass = new JPasswordField(8);
 		
 		btnDangKy.setActionCommand("DangKy");
 		
 		
-		lbUserName.setBounds(CHIEURONGFRAME / 2 - LABEL_SIZE_WIDTH - SPACE,
-				CHIEUCAOFRAME / 2 - LABEL_SIZE_HEIGHT / 2, LABEL_SIZE_WIDTH, LABEL_SIZE_HEIGHT);
+		lbUserName.setBounds((CHIEURONGFRAME / 2 - LABEL_SIZE_WIDTH - SPACE)-25,
+				CHIEUCAOFRAME / 2 - LABEL_SIZE_HEIGHT / 2, LABEL_SIZE_WIDTH+100, LABEL_SIZE_HEIGHT);
 		txtUsername.setBounds(CHIEURONGFRAME / 2 + SPACE, CHIEUCAOFRAME / 2 - TXT_SIZE_HEIGHT / 2, TXT_SIZE_WIDTH,
 				TXT_SIZE_HEIGHT);
 
-		lbPass.setBounds(CHIEURONGFRAME / 2 - LABEL_SIZE_WIDTH - SPACE,
-				CHIEUCAOFRAME / 2 + LABEL_SIZE_HEIGHT * 2 - SPACE, LABEL_SIZE_WIDTH, LABEL_SIZE_HEIGHT);
+		lbPass.setBounds((CHIEURONGFRAME / 2 - LABEL_SIZE_WIDTH - SPACE)-25,
+				CHIEUCAOFRAME / 2 + LABEL_SIZE_HEIGHT * 2 - SPACE, LABEL_SIZE_WIDTH+200, LABEL_SIZE_HEIGHT);
 		txtPass.setBounds(CHIEURONGFRAME / 2 + SPACE, CHIEUCAOFRAME / 2 + TXT_SIZE_HEIGHT * 2 - SPACE,
 				TXT_SIZE_WIDTH, TXT_SIZE_HEIGHT);
 
@@ -61,6 +67,7 @@ public class GDDangKy extends APanel{
 		this.add(txtPass);
 		this.add(btnOut);
 		
+		
 	}
 	public JTextField getTxtUsername() {
 		return txtUsername;
@@ -71,7 +78,6 @@ public class GDDangKy extends APanel{
 	}
 	@Override
 	public void addAction() {
-		ctrDangKy = new ControllerDangKy(this);
 		Component[] comps =  this.getComponents();
 		for(Component comp : comps) {
 			if(comp instanceof JButton) {
@@ -95,18 +101,16 @@ public class GDDangKy extends APanel{
 		if(this.getTxtUsername().getText().isEmpty()||this.getTxtPass().getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin");
 		}
-		else if(ctrDangKy.checkTaiKhoan(txtUsername.getText(), txtPass.getText())) {//check xem tk đã tồn tại hay chưa
-			JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu đã tồn tại");
+		 else if(ctrDangKy.checkDangKy(txtUsername.getText(), txtPass.getText())) {
+				JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu đã được sử dụng");
 		}
-		else {
-			ctrDangKy.themTkVaoDs(txtUsername.getText(), txtPass.getText());//thêm tk khoản vào ds
-			JOptionPane.showMessageDialog(this, "Bạn đã đăng ký thành công");
-		}
+		 else {
+			 ctrDangKy.dangKyTK(txtUsername.getText(), txtPass.getText());
+			 JOptionPane.showMessageDialog(this, "Bạn đã đăng ký thành công!");
+		 }
 	}
 	public void clickBtnOut() {
 		view.setContentPane(view.getPanel("DangNhap"));
 		view.setVisible(true);
 	}
-	
-
 }

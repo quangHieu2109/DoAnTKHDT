@@ -1,24 +1,18 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.JOptionPane;
-
-import models.Models;
-import models.TaiKhoan;
+import models.DSTaiKhoan;
 import view.GDDangKy;
+import view.View;
 
-public class ControllerDangKy extends Controller {
-	GDDangKy panel;
-//	static Models models;
-
-	public ControllerDangKy(GDDangKy dangKy) {
-		this.panel = dangKy;
-	}
-
-	public void themTkVaoDs(String userName, String pass) {
-//		models.getDsTK().add(new TaiKhoan(userName, pass));
-		models.themTaiKhoan(userName, pass);
-		models.dangKyTaiKhoan();
-	}
+public class ControllerDangKy {
+public  ControllerDangKy() { 
+	GDDangKy gdDK = new GDDangKy(this);
+	View.getInstance().addPanel("DangKy", gdDK);
+}
+public void dangKyTK(String userName,String password) {
+	DSTaiKhoan.getDSTaiKhoan().themTaiKhoan(userName, password);
+}
+public boolean checkDangKy(String userName,String password) {
+	return DSTaiKhoan.getDSTaiKhoan().checkTaiKhoan(userName, password);
+}
 }
