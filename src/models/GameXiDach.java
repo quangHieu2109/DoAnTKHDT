@@ -27,7 +27,7 @@ public class GameXiDach implements TypeGame {
 
 			@Override
 			public void run() {
-				for (int i = 0; i < game.getSoNguoiChoi(); i++) {
+				for (int i = 0; i < checkThangDauGame().size(); i++) {
 					if (checkThangDauGame().get(i) != 0) {// nếu thắng thì kết thúc game
 						endGame1();
 						notifyObsGame();
@@ -145,17 +145,29 @@ public class GameXiDach implements TypeGame {
 		int res = 0;
 //		boolean pl = game.getDsNguoiChoi().getNguoiChoi(0).xiDach();
 		boolean cs = game.getDsNguoiChoi().getNguoiChoi(1).xiDach();
-
+		boolean win = false;
 		for (int i = 0; i < game.getSoNguoiChoi(); i++) {
-			boolean pl = game.getDsNguoiChoi().getNguoiChoi(i).xiDach();
-			if (pl != true && cs == true) {
-				res = -1; // tru tien nguoi choi
-			} else if (pl == true && cs != true) {
-				res = 1; // cong tien nguoi choi
-			} else if ((pl == true && cs == true) || pl != true && cs != true) {
-				res = 9; // hoa
+			if (game.getDsNguoiChoi().getNguoiChoi(i).xiDach()) {
+				win = true;
 			}
-			result.add(res);
+		}
+		if (win) {
+			for (int i = 0; i < game.getSoNguoiChoi(); i++) {
+				boolean pl = game.getDsNguoiChoi().getNguoiChoi(i).xiDach();
+				if (pl != true && cs == true) {
+					res = -1; // tru tien nguoi choi
+				} else if (pl == true && cs != true) {
+					res = 1; // cong tien nguoi choi
+				} else if ((pl == true && cs == true) || pl != true && cs != true) {
+					res = 9; // hoa
+				}
+				result.add(res);
+			}
+		} else {
+			for (int i = 0; i < game.getSoNguoiChoi(); i++) {
+				
+				result.add(0);
+			}
 		}
 
 		return result;

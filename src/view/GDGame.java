@@ -231,7 +231,23 @@ public class GDGame extends APanel implements ObseverGame {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == btnHuongDan.getActionCommand()) {
-			String s = "";
+			String s = "1. Điểm số của các lá bài:\r\n"
+					+ "	Lá bài từ 2 đến 10 có giá trị bằng điểm số được ghi trên lá bài.\r\n"
+					+ "	Bài J, Q, K có giá trị là 10 điểm.\r\n"
+					+ "	Bài A có giá trị là 1 hoặc 10 hoặc 11 điểm.\r\n"
+					+ "2. Cách tính điểm:\r\n"
+					+ "	Tổng điểm của một bộ bài không được vượt quá 21 điểm.\r\n"
+					+ "	Nếu tổng điểm của bạn vượt quá 21 điểm, và chủ sòng có điểm <=21 thì bạn thua và ngược lại\r\n"
+					+ "	Nếu bạn và chủ sòng đều <= 21 điểm thì ai gần 21 hơn người đó sẽ thắng\r\n"
+					+ "3. Các nước đi cơ bản:\r\n"
+					+ "	Mỗi người chơi sẽ được chia hai lá bài ban đầu.\r\n"
+					+ "	Người chơi có thể lấy thêm bài (Rút bài) để tăng tổng điểm của mình.\r\n"
+					+ "	Người chơi cũng có thể dừng lại (Dằn) và giữ nguyên tổng điểm hiện tại của mình.\r\n"
+					+ "	Nếu người chơi có một lá bài A và một lá bài có giá trị 10, bạn sẽ có một blackjack \r\n"
+					+ "	và thắng ngay lập tức, trừ khi đối thủ cũng có blackjack.\r\n"
+					+ "	Nếu người chơi có 5 lá bài và tổng điểm <=21 thì bạn sẽ có \"ngũ linh\" và \r\n"
+					+ "	thắng ngay lập tức.\r\n"
+					+ "";
 
 			if (game.getKieuGame() instanceof GameBaiCao) {// cho s đọc file bài cào
 

@@ -1,0 +1,16 @@
+1. Điểm số của các lá bài:
+	Lá bài từ 2 đến 10 có giá trị bằng điểm số được ghi trên lá bài.
+	Bài J, Q, K có giá trị là 10 điểm.
+	Bài A có giá trị là 1 hoặc 10 hoặc 11 điểm.
+2. Cách tính điểm:
+	Tổng điểm của một bộ bài không được vượt quá 21 điểm.
+	Nếu tổng điểm của bạn vượt quá 21 điểm, và chủ sòng có điểm <=21 thì bạn thua và ngược lại
+	Nếu bạn và chủ sòng đều <= 21 điểm thì ai gần 21 hơn người đó sẽ thắng
+3. Các nước đi cơ bản:
+	Mỗi người chơi sẽ được chia hai lá bài ban đầu.
+	Người chơi có thể lấy thêm bài (Rút bài) để tăng tổng điểm của mình.
+	Người chơi cũng có thể dừng lại (Dằn) và giữ nguyên tổng điểm hiện tại của mình.
+	Nếu người chơi có một lá bài A và một lá bài có giá trị 10, bạn sẽ có một blackjack 
+	và thắng ngay lập tức, trừ khi đối thủ cũng có blackjack.
+	Nếu người chơi có 5 lá bài và tổng điểm <=21 thì bạn sẽ có "ngũ linh" và 
+	thắng ngay lập tức.
