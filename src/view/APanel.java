@@ -19,6 +19,7 @@ public abstract class APanel extends JPanel implements ActionListener{
 	final int TXT_SIZE_WIDTH = 90;
 	final int TXT_SIZE_HEIGHT = 25;
 	final ImageIcon imgBtnOut = new ImageIcon("./img/main/out.png");
+	final ImageIcon imgBtnGuide = new ImageIcon("./img/main/guide.png");
     final int CHIEURONGFRAME = View.getInstance().CHIEURONGFRAME;
     final int CHIEUCAOFRAME = View.getInstance().CHIEUCAOFRAME;
     JButton btnOut;

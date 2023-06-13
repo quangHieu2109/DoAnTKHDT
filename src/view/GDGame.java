@@ -3,20 +3,20 @@ package view;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.Document;
+import javax.swing.text.DocumentFilter;
 
 import controller.ControllerGame;
 import controller.ControllerSanhGame;
-import models.Bai;
 import models.Game;
 import models.GameBaiCao;
 import models.GameXiDach;
@@ -33,6 +33,8 @@ public class GDGame extends APanel implements ObseverGame {
 	private JButton btnBatDau;
 	private JButton btnRutBai;
 	private JButton btnDan;
+	private JButton btnHuongDan;
+	private JOptionPane txtHD;
 	private boolean rutBai = true;
 	int soNguoiChoi;
 
@@ -50,6 +52,14 @@ public class GDGame extends APanel implements ObseverGame {
 	public void init() {
 		super.init();
 
+		txtHD = new JOptionPane();
+
+		btnHuongDan = new JButton(imgBtnGuide);
+		btnHuongDan.setOpaque(false);
+		btnHuongDan.setBorderPainted(false);
+		btnHuongDan.setBounds(CHIEURONGFRAME - BTN_SIZE_WIDTH - 100, CHIEUCAOFRAME - BTN_SIZE_HEIGHT - 100,
+				BTN_SIZE_WIDTH, BTN_SIZE_HEIGHT + 48);
+		btnHuongDan.setActionCommand("HuongDan");
 		soNguoiChoi = game.getSoNguoiChoi();
 		dsGDNguoiChoi = new ArrayList<>();
 
@@ -92,6 +102,7 @@ public class GDGame extends APanel implements ObseverGame {
 					game.getBoBai().getBaiTai(i).getWidthImg(), game.getBoBai().getBaiTai(i).getHeightImg());
 			this.add(game.getBoBai().getBaiTai(i));
 		}
+		this.add(btnHuongDan);
 		this.add(btnBatDau);
 		this.add(btnRutBai);
 		this.add(txtDatCuoc);
@@ -219,6 +230,19 @@ public class GDGame extends APanel implements ObseverGame {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand() == btnHuongDan.getActionCommand()) {
+			String s = "";
+
+			if (game.getKieuGame() instanceof GameBaiCao) {// cho s đọc file bài cào
+
+			}
+			if (game.getKieuGame() instanceof GameXiDach) {// cho s đọc file xì dách
+
+			}
+
+			txtHD.showMessageDialog(this, s);
+
+		}
 		if (e.getActionCommand() == btnBatDau.getActionCommand()) {
 			int tienCuoc = 0;
 			if (!txtDatCuoc.getText().isEmpty()) {
