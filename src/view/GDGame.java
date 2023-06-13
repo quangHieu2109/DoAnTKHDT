@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import java.util.ArrayList;
@@ -60,6 +61,9 @@ public class GDGame extends APanel implements ObseverGame {
 		themNguoiChoiVaoGame();
 
 		lbDatCuoc = new JLabel("Đặt cược: ");
+		Font font = new Font("Arial", Font.BOLD, 15);
+		lbDatCuoc.setFont(font);
+
 		txtDatCuoc = new JTextField(7);
 
 		btnRutBai = new JButton("Rút Bài");

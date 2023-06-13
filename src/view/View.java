@@ -19,7 +19,7 @@ public class View extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 		this.setVisible(true);
-
+		this.setResizable(false);
 		this.init();
 	}
 

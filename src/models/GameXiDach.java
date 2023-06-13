@@ -59,15 +59,15 @@ public class GameXiDach implements TypeGame {
 	public void danBai() {// dành cho người chơi
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
-			int process = 0;
+			int process = 1;
 
 			@Override
 			public void run() {
 				boolean continute = false;
 				for (int i = 1; i < game.getSoNguoiChoi(); i++) {
-
+//					 continute = false;
 					if (game.getDsNguoiChoi().getNguoiChoi(i).getDiemTrenTay() < 14) {
-						rutBai(game.getDsNguoiChoi().getNguoiChoi(i), process * 400 + 200);
+						rutBai(game.getDsNguoiChoi().getNguoiChoi(i), process * 200 + 200);
 						continute = true;
 						process++;
 					}
@@ -84,12 +84,13 @@ public class GameXiDach implements TypeGame {
 						}
 					};
 					timer1.schedule(task1, process * 400 + 500);
+//					timer1.s
 
 				}
 
 			}
 		};
-		timer.schedule(task, 500, 5);
+		timer.schedule(task, 500, 100);
 
 	}
 
@@ -127,7 +128,10 @@ public class GameXiDach implements TypeGame {
 		for (int i = 0; i < res.size(); i++) {
 			NguoiChoi pl = game.getDsNguoiChoi().getNguoiChoi(i);
 			if (i != 1) {
-				pl.setTien(pl.getTien() + game.getTienCuoc() * res.get(i));
+//				pl.setTien(pl.getTien() + game.getTienCuoc() * res.get(i));
+				if (res.get(i) <= 1) {
+					pl.setTien(pl.getTien() + game.getTienCuoc() * res.get(i));
+				}
 			}
 		}
 		DSTaiKhoan.getInstance().getNguoiChoi().setMoney(game.getDsNguoiChoi().getNguoiChoi(0).getTien());
@@ -141,13 +145,14 @@ public class GameXiDach implements TypeGame {
 		int res = 0;
 //		boolean pl = game.getDsNguoiChoi().getNguoiChoi(0).xiDach();
 		boolean cs = game.getDsNguoiChoi().getNguoiChoi(1).xiDach();
+
 		for (int i = 0; i < game.getSoNguoiChoi(); i++) {
 			boolean pl = game.getDsNguoiChoi().getNguoiChoi(i).xiDach();
 			if (pl != true && cs == true) {
 				res = -1; // tru tien nguoi choi
 			} else if (pl == true && cs != true) {
 				res = 1; // cong tien nguoi choi
-			} else if (pl == true && cs == true) {
+			} else if ((pl == true && cs == true) || pl != true && cs != true) {
 				res = 9; // hoa
 			}
 			result.add(res);
@@ -227,11 +232,18 @@ public class GameXiDach implements TypeGame {
 
 	public String gameOver() {// viết ở đây
 		String result = "";
-		int check = checkWin().get(0);
+		int check = 0;
+		if (checkThangDauGame().get(0) != 0) {
+			check = checkThangDauGame().get(0);
+		} else {
+			check = checkWin().get(0);
+		}
 		if (check < 0) {
 			result = "  You lose \n" + "  " + check * game.getTienCuoc();
-		} else {
+		} else if (check == 1) {
 			result = "  You win \n" + "  +" + check * game.getTienCuoc();
+		} else {
+			result = "  You win \n" + "  +" + 0;
 		}
 		return result;
 	}

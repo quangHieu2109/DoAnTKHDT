@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DSTaiKhoan {
 	private static List<TaiKhoan> dsTaiKhoan = new ArrayList<>();
-	private static DSTaiKhoan instance = new DSTaiKhoan();
+	private static DSTaiKhoan instance = new DSTaiKhoan();//singleton pattern
 	private String username = "";
 
 	public static DSTaiKhoan getDSTaiKhoan() {
@@ -22,7 +22,8 @@ public class DSTaiKhoan {
 		return instance;
 	}
 
-	public static void updateDSTaiKhoan() {// đọc file text dsTaiKhoan ở đây
+	public static void updateDSTaiKhoan() {
+		//Dùng để cập nhật tiền của người chơi
 		xoaFile();
 		try {
 			PrintWriter pw = new PrintWriter("TaiKhoan.txt");
@@ -39,7 +40,8 @@ public class DSTaiKhoan {
 		}
 	}
 
-	public static void taoTaiKhoan() {
+	public static void taoTaiKhoan() { 
+		//Đọc dữ liệu từ file TaiKhoan để đưa vào dsTaiKhoan
 		dsTaiKhoan.removeAll(dsTaiKhoan);
 		File file = new File("TaiKhoan.txt");
 		try {
@@ -84,6 +86,7 @@ public class DSTaiKhoan {
 	}
 
 	public static boolean ktTaiKhoan(String tk) {
+		//kiểm tra tài khoản tk đã có trong danh sách hay chưa
 		boolean result = true;
 		List<String> listTK = new ArrayList<>();
 		for (TaiKhoan t : dsTaiKhoan) {
@@ -100,6 +103,8 @@ public class DSTaiKhoan {
 	}
 
 	public boolean checkTaiKhoan(String userName, String passWord) {
+		// kiểm tra tk mk nhập vào có đúng hay không
+		
 		boolean res = false;
 
 		for (TaiKhoan taiKhoan : dsTaiKhoan) {
