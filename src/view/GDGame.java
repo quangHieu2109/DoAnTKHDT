@@ -3,7 +3,9 @@ package view;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,33 +229,37 @@ public class GDGame extends APanel implements ObseverGame {
 				CHIEUCAOFRAME - dsGDNguoiChoi.get(0).height - 2 * SPACE, dsGDNguoiChoi.get(0).width,
 				dsGDNguoiChoi.get(0).height);
 	}
-
+	public String readFile(String fileName) {
+		String result="";
+		File file = new File(fileName);
+		try {
+			
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String line="";
+			while((line =br.readLine() )!= null) {
+				String[] tmp = line.split(" ");
+				for (String string : tmp) {
+					result+=string+" ";
+				}
+				result+="\n";
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == btnHuongDan.getActionCommand()) {
-			String s = "1. Điểm số của các lá bài:\r\n"
-					+ "	Lá bài từ 2 đến 10 có giá trị bằng điểm số được ghi trên lá bài.\r\n"
-					+ "	Bài J, Q, K có giá trị là 10 điểm.\r\n"
-					+ "	Bài A có giá trị là 1 hoặc 10 hoặc 11 điểm.\r\n"
-					+ "2. Cách tính điểm:\r\n"
-					+ "	Tổng điểm của một bộ bài không được vượt quá 21 điểm.\r\n"
-					+ "	Nếu tổng điểm của bạn vượt quá 21 điểm, và chủ sòng có điểm <=21 thì bạn thua và ngược lại\r\n"
-					+ "	Nếu bạn và chủ sòng đều <= 21 điểm thì ai gần 21 hơn người đó sẽ thắng\r\n"
-					+ "3. Các nước đi cơ bản:\r\n"
-					+ "	Mỗi người chơi sẽ được chia hai lá bài ban đầu.\r\n"
-					+ "	Người chơi có thể lấy thêm bài (Rút bài) để tăng tổng điểm của mình.\r\n"
-					+ "	Người chơi cũng có thể dừng lại (Dằn) và giữ nguyên tổng điểm hiện tại của mình.\r\n"
-					+ "	Nếu người chơi có một lá bài A và một lá bài có giá trị 10, bạn sẽ có một blackjack \r\n"
-					+ "	và thắng ngay lập tức, trừ khi đối thủ cũng có blackjack.\r\n"
-					+ "	Nếu người chơi có 5 lá bài và tổng điểm <=21 thì bạn sẽ có \"ngũ linh\" và \r\n"
-					+ "	thắng ngay lập tức.\r\n"
-					+ "";
+			String s ="";
 
 			if (game.getKieuGame() instanceof GameBaiCao) {// cho s đọc file bài cào
-
+				s = readFile("BaiCao.txt");
 			}
 			if (game.getKieuGame() instanceof GameXiDach) {// cho s đọc file xì dách
-
+				s = readFile("XiDach.txt");
 			}
 
 			txtHD.showMessageDialog(this, s);

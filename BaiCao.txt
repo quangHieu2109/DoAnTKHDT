@@ -1,0 +1,13 @@
+1. Điểm số của các lá bài:
+	Lá bài từ 2 đến 10 có giá trị bằng điểm số được ghi trên lá bài.
+	Bài J, Q, K có giá trị là 10 điểm.
+	Bài A có giá trị là 1 hoặc 10 hoặc 11 điểm.
+2. Cách chia bài:
+	Mỗi người chơi sẽ được chia 3 lá bài.
+
+3. Cách tính điểm:
+	Tổng điểm của một bộ bài được tính bằng tổng điểm của 3 lá bài.
+	Nếu tổng điểm của một bộ bài vượt quá 10, điểm của bộ bài sẽ được tính bằng giá trị của tổng điểm trừ đi 10.
+	Ví dụ: nếu tổng điểm của bộ bài là 17, điểm của bộ bài sẽ được tính là 7.
+4. Cách xét kết quả
+	Nếu bạn có tổng điểm cao hơn chủ sòng thì bạn thắng và ngược lại
